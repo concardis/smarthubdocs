@@ -15,17 +15,9 @@
       "description": "Live"
     }
   ],
-  "tags": [
-    {
-      "name": "Health API"
-    }
-  ],
   "paths": {
     "/health": {
       "get": {
-        "tags": [
-          "Health API"
-        ],
         "summary": "Get system health",
         "description": "Endpoint to check the health status of the system.\n",
         "operationId": "getHealth",
@@ -70,11 +62,6 @@
         "type": "http",
         "scheme": "Basic",
         "description": "Authorization: Basic base64(merchantId:apiKey)"
-      },
-      "Bearer": {
-        "type": "http",
-        "scheme": "Bearer",
-        "description": "Authorization: Bearer merchantId"
       }
     }
   }
