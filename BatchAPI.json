@@ -15,17 +15,9 @@
       "description": "Live"
     }
   ],
-  "tags": [
-    {
-      "name": "Batch API"
-    }
-  ],
   "paths": {
     "/batch": {
       "get": {
-        "tags": [
-          "Batch API"
-        ],
         "summary": "Get a list of batch files",
         "description": "Endpoint to receive a list of uploaded batch files.\n\nThe following parameters can be used as filter.\n- page\n- size\n- createdAtAfter\n- createdAtBefore\n- batchRequestFileName\n- batchSequence\n- generatedAtAfter\n- generatedAtBefore\n\nThe following parameter names can be used for ordering the results.\n- createdAt\n- batchRequestFileName\n- batchSequence\n- generatedAt\n",
         "operationId": "getBatches",
@@ -68,9 +60,6 @@
     },
     "/batch/{batchId}": {
       "get": {
-        "tags": [
-          "Batch API"
-        ],
         "summary": "Get a specific batch file",
         "description": "Endpoint to receive the meta data of a specific batch file referencing the batchId\n",
         "operationId": "getBatch",
