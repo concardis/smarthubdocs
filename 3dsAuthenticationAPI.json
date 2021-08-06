@@ -5,6 +5,16 @@
     "title": "3DS Authentication API",
     "description": "The 3DS Authentication API is providing all services needed to manage 3DS 1.0/2.0 authentication."
   },
+  "servers": [
+    {
+      "url": "https://apitest.payengine.de/v1",
+      "description": "Test"
+    },
+    {
+      "url": "https://api.payengine.de/v1",
+      "description": "Live"
+    }
+  ],
   "paths": {
     "/payment-instruments/{paymentInstrumentId}/3ds-version": {
       "post": {
