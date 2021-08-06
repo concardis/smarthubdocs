@@ -15,17 +15,9 @@
       "description": "Live"
     }
   ],
-  "tags": [
-    {
-      "name": "3DS Authentication API"
-    }
-  ],
   "paths": {
     "/payment-instruments/{paymentInstrumentId}/3ds-version": {
       "post": {
-        "tags": [
-          "3DS Authentication API"
-        ],
         "summary": "Create a 3DS version info\n",
         "description": "Endpoint to check the supported 3DS version and receive additional 3DS related information.\n",
         "operationId": "getThreeDsVersionForPaymentInstrument",
@@ -83,9 +75,6 @@
     },
     "/browser-info": {
       "post": {
-        "tags": [
-          "3DS Authentication API"
-        ],
         "summary": "Store browser information\n",
         "description": "Endpoint to store browser session information, the browser session information is usually collected via javascript.",
         "operationId": "createBrowserInfo",
@@ -114,7 +103,7 @@
         },
         "security": [
           {
-            "Bearer": []
+            "basicAuth": []
           }
         ],
         "x-codegen-request-body-name": "body"
@@ -122,9 +111,6 @@
     },
     "/payment-instruments/{paymentInstrumentId}/3ds-version/{threeDsVersionId}/3ds-authentication": {
       "post": {
-        "tags": [
-          "3DS Authentication API"
-        ],
         "summary": "Create a 3DS authentication\n",
         "description": "Endpoint to create a standalone 3DS authentication for the given payment-instrument based on the 3DS version result\n",
         "operationId": "createAuthenticationForPaymentInstrument",
@@ -181,9 +167,6 @@
     },
     "/creditcard/3ds-authentication/{threeDsAuthenticationId}": {
       "get": {
-        "tags": [
-          "3DS Authentication API"
-        ],
         "summary": "Get a 3DS authentication result",
         "description": "Endpoint to fetch the result details of a 3DS authentication.\n",
         "operationId": "getThreeDsAuthentication",
@@ -934,11 +917,6 @@
         "type": "http",
         "scheme": "Basic",
         "description": "Authorization: Basic base64(merchantId:apiKey)"
-      },
-      "Bearer": {
-        "type": "http",
-        "scheme": "Bearer",
-        "description": "Authorization: Bearer merchantId"
       }
     }
   }
