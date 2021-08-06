@@ -5,6 +5,16 @@
     "title": "Tokenization API",
     "description": "The Tokenization API is used for creating token references of payment data."
   },
+  "servers": [
+    {
+      "url": "https://apitest.payengine.de/v1",
+      "description": "Test"
+    },
+    {
+      "url": "https://api.payengine.de/v1",
+      "description": "Live"
+    }
+  ],
   "paths": {
     "/payment-instruments": {
       "post": {
