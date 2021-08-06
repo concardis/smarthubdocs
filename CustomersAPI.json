@@ -15,17 +15,9 @@
       "description": "Live"
     }
   ],
-  "tags": [
-    {
-      "name": "Customers API"
-    }
-  ],
   "paths": {
     "/customers": {
       "get": {
-        "tags": [
-          "Customers API"
-        ],
         "summary": "Get a list of customers",
         "description": "Endpoint to receive a list of available customers.\n\n\nThe following parameters can be used as filter.\n- customerId\n- email\n- merchantCustomerId\n- createdAt\n- modifiedAt\n\n\nThe following parameters can be used as a range filter.\n- createdAt\n- modifiedAt\n",
         "operationId": "getCustomers",
@@ -48,9 +40,6 @@
         ]
       },
       "post": {
-        "tags": [
-          "Customers API"
-        ],
         "summary": "Create a customer",
         "description": "Endpoint to create a new customer returning a unique customerId.\n\nA customer object acts as a container for customer specific personas and addresses.\n\nIf the email address or the merchantCustomerId of the given customer is already known to the platform the service will respond with HTTP status 200 OK. For every newly created customer service will respond with the HTTP status 201 CREATED\n",
         "operationId": "createCustomer",
@@ -97,9 +86,6 @@
     },
     "/customers/{customerId}": {
       "get": {
-        "tags": [
-          "Customers API"
-        ],
         "summary": "Get a customer",
         "description": "Endpoint to receive a customer referencing the customerId.\n\n\nThe service will also return associated persona and address data\n",
         "operationId": "getCustomer",
@@ -143,9 +129,6 @@
         ]
       },
       "delete": {
-        "tags": [
-          "Customers API"
-        ],
         "summary": "Delete a customer",
         "description": "Endpoint to delete a specific customer referencing the customerId.\n",
         "operationId": "deleteCustomer",
@@ -183,9 +166,6 @@
         ]
       },
       "patch": {
-        "tags": [
-          "Customers API"
-        ],
         "summary": "Update a customer",
         "description": "Endpoint to update the merchantCustomerId of a specific customer referencing the customerId\n",
         "operationId": "updateCustomer",
@@ -243,9 +223,6 @@
     },
     "/customers/{customerId}/personas/{personaId}": {
       "get": {
-        "tags": [
-          "Customers API"
-        ],
         "summary": "Get a customer's persona",
         "description": "Endpoint to receive a specific persona data referencing the corresponding personaId and customerId.\n",
         "operationId": "getPersona",
@@ -300,9 +277,6 @@
     },
     "/customers/{customerId}/personas": {
       "get": {
-        "tags": [
-          "Customers API"
-        ],
         "summary": "Get a list of customer's personas",
         "description": "Endpoint to receive a list of available personas for a specific customer referencing the customerId.\n",
         "operationId": "getPersonas",
@@ -346,9 +320,6 @@
         ]
       },
       "post": {
-        "tags": [
-          "Customers API"
-        ],
         "summary": "Assign a persona to a customer",
         "description": "Endpoint to create a persona object and assign it to a specific customer referencing the customerId.\n\nPersonas contain person related attributes of a customer which are needed to process some payment methods.\n",
         "operationId": "createPersona",
@@ -406,9 +377,6 @@
     },
     "/customers/{customerId}/addresses/{addressId}": {
       "get": {
-        "tags": [
-          "Customers API"
-        ],
         "summary": "Get a customer's address",
         "description": "Endpoint to receive a specific address data referencing the corresponding personaId and customerId.\n",
         "operationId": "getAddress",
@@ -463,9 +431,6 @@
     },
     "/customers/{customerId}/addresses": {
       "get": {
-        "tags": [
-          "Customers API"
-        ],
         "summary": "Get a list of customer's addresses",
         "description": "Endpoint to receive a list of available addresses for a specific customer referencing the customerId.\n",
         "operationId": "getAddresses",
@@ -509,9 +474,6 @@
         ]
       },
       "post": {
-        "tags": [
-          "Customers API"
-        ],
         "summary": "Assign an address to a customer",
         "description": "Endpoint to create a new address for a specific customer.\n\nAddresses containing address related attributes of a customer which are needed to process some payment methods.\n",
         "operationId": "createAddress",
@@ -569,9 +531,6 @@
     },
     "/customers/{customerId}/payment-instruments": {
       "get": {
-        "tags": [
-          "Customers API"
-        ],
         "summary": "Get a list of customer's payment instruments",
         "description": "Endpoint to receive a list of available payment instruments for a specific customer referencing the customerId.\n",
         "operationId": "getPaymentInstruments",
@@ -615,9 +574,6 @@
         ]
       },
       "post": {
-        "tags": [
-          "Customers API"
-        ],
         "summary": "Assign a payment instrument to a customer",
         "description": "Endpoint to assign a payment instrument to a specific customer referencing the customerId.\n",
         "operationId": "assignPaymentInstrumentToCustomer",
@@ -669,9 +625,6 @@
     },
     "/customers/{customerId}/payment-instruments/{paymentInstrumentId}": {
       "delete": {
-        "tags": [
-          "Customers API"
-        ],
         "summary": "Delete a customer's payment instrument",
         "description": "Endpoint to delete a specific payment instrument from a customer.\n",
         "operationId": "deletePaymentInstrument",
@@ -2293,11 +2246,6 @@
         "type": "http",
         "scheme": "Basic",
         "description": "Authorization: Basic base64(merchantId:apiKey)"
-      },
-      "Bearer": {
-        "type": "http",
-        "scheme": "Bearer",
-        "description": "Authorization: Bearer merchantId"
       }
     }
   }
