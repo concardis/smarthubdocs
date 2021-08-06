@@ -5,27 +5,9 @@
     "title": "Settlements API",
     "description": "Service that provides settlement data"
   },
-  "servers": [
-    {
-      "url": "https://apitest.payengine.de/v1",
-      "description": "Test"
-    },
-    {
-      "url": "https://api.payengine.de/v1",
-      "description": "Live"
-    }
-  ],
-  "tags": [
-    {
-      "name": "Settlements API"
-    }
-  ],
   "paths": {
     "/settlements": {
       "get": {
-        "tags": [
-          "Settlements API"
-        ],
         "summary": "Get a list of settlement files\n",
         "description": "Endpoint to receive a list of available settlement files.\n\nThe following parameters can be used as filter.\n- settlementId - filter the files by their Id\n- receivedAt - current time when the file is received\n- product - filter by different products\n- downloaded - mark the file after first download as “downloaded”. This is just a state and it doesn’t mean that the file could not be anymore downloaded. The file could be downloaded as many times needed and this state just shows that is downloaded at least ones\n- receivedAtAfter - filter by received time after\n- receivedAtBefore - filter by received time before\n- fileFormat - only csv file format is allowed\n- excludeFiles - boolean check that excludes the content of the settlement files to be return in the response\n- settlementType - determine if we wanted to filter by original or unified settlements\n\nThe following parameter names can be used for ordering the results.\n - settlementId\n - product\n - downloaded\n - receivedAt\n - fileFormat\n - settlementType\n",
         "operationId": "getSettlements",
