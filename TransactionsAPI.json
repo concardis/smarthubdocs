@@ -5,27 +5,9 @@
     "title": "Transactions API",
     "description": "The Transactions API is providing services for managing payment transactions."
   },
-  "servers": [
-    {
-      "url": "https://apitest.payengine.de/v1",
-      "description": "Test"
-    },
-    {
-      "url": "https://api.payengine.de/v1",
-      "description": "Live"
-    }
-  ],
-  "tags": [
-    {
-      "name": "Transactions API"
-    }
-  ],
   "paths": {
     "/orders/{orderId}/transactions/{transactionId}/cancel": {
       "post": {
-        "tags": [
-          "Transactions API"
-        ],
         "summary": "Cancel a transaction",
         "description": "Endpoint to create a cancelation a preauth transaction referencing the corresponding orderId and transactionId.\n\nA cancel transaction can only be applied to a non expired preauth transaction that is in status SUCCESS.\nPartial cancelations are supported but the initialAmount cannot be higher than the amount that was authorized\n",
         "operationId": "createCancel",
@@ -92,9 +74,6 @@
     },
     "/orders/{orderId}/transactions/{transactionId}/capture": {
       "post": {
-        "tags": [
-          "Transactions API"
-        ],
         "summary": "Capture a transaction",
         "description": "Endpoint to capture a preauth transaction referencing the corresponding orderId and transactionId.\n\nA capture transaction can only be applied to a non expired preauth transaction that is in status SUCCESS.\nPartial captures are supported but the initialAmount cannot be higher than the amount that was authorized.\n",
         "operationId": "createCapture",
@@ -161,9 +140,6 @@
     },
     "/orders/{orderId}/transactions/{transactionId}/refund": {
       "post": {
-        "tags": [
-          "Transactions API"
-        ],
         "summary": "Refund a transaction",
         "description": "Endpoint to refund a capture transaction referencing the corresponding orderId and transactionId.\n\nA refund transaction can only be applied to a capture transaction that is in status SUCCESS.\nPartial refunds are supported but the initialAmount cannot be higher than the amount that was captured.\n\nIn case refunds for sepa/sofort/prepayment are executed using the online bank transfer feature the refund will result in the status PENDING.\n\nThe transaction response will contain a challenge element with the TAN instructions.\n\nThe TAN needs to be transmitted in subsequent request. See \"PATCH /orders/{orderId}/transactions/{transactionId}\"\n",
         "operationId": "createRefund",
@@ -230,9 +206,6 @@
     },
     "/orders/credit": {
       "post": {
-        "tags": [
-          "Transactions API"
-        ],
         "summary": "Create a credit/payout transaction",
         "description": "An endpoint to create credit transactions.\n<br/><br/>\nSupported transaction types are non-reference refund and original credit transaction (OCT) / payout.\n<br/><br/>\nNon-reference refund transaction is the default type of credit. Supported for credit card, SEPA and Paypal. Credit card and SEPA are process via MOTO channel, Paypal via ECOM.\n<br/><br/>\nOriginal credit transaction (OCT) / payout is supported for credit card - both VISA (Visa Direct) and MasterCard (MasterCard Send). In order to trigger credit as OCT / payout the instant flag in the meta object should be set to true. The channel used for OCT / payout is ECOM. For VISA it's highly recommended to execute the operation with sending a dynamic subscription for notification. This will assure that in case of timeout during the initial processing request, a notification with the final status of the transaction will be sent once it's processed by the system.\n",
         "operationId": "createCreditOrder",
@@ -279,9 +252,6 @@
     },
     "/orders/{orderId}/transactions/{transactionId}": {
       "get": {
-        "tags": [
-          "Transactions API"
-        ],
         "summary": "Get a transaction",
         "description": "Endpoint to receive a specific transaction referencing the orderId and transactionId.\n",
         "operationId": "getTransaction",
@@ -334,9 +304,6 @@
         ]
       },
       "patch": {
-        "tags": [
-          "Transactions API"
-        ],
         "summary": "Update a transaction",
         "description": "Endpoint to update a specific transaction referencing the orderId and transactionId.\n\nThe service can be used for updating preauth transactions for ratepay-invoice, ratepay-directdebit or ratepay-installment that have not been captured yet.\n\nThe service can also be used for updating the TAN for refund transactions using the online bank transfer feature for sepa/sofort/prepayment that are in status PENDING.\n",
         "operationId": "updateTransaction",
@@ -403,9 +370,6 @@
     },
     "/orders/{orderId}/transactions": {
       "get": {
-        "tags": [
-          "Transactions API"
-        ],
         "summary": "Get a list of transactions",
         "description": "Endpoint to receive a list of all available transactions of an orders referencing the orderId.\n",
         "operationId": "getTransactions",
@@ -2669,9 +2633,6 @@
             "description": "The ID of the eDCC offer to be used for currency conversion. Applicable only for credit card orders",
             "example": "Edcc-cbc6ffd8-6417-49ee-92c1-121fe1e19b20"
           },
-          "cardAcquirerRoutingTo": {
-            "$ref": "#/components/schemas/CardAcquirerRoutingToEnum"
-          },
           "terminalId": {
             "type": "string",
             "description": "The terminalId of the POS terminal, mandatory for POS Auth UP operation.",
@@ -2950,15 +2911,6 @@
           }
         }
       },
-      "CardAcquirerRoutingToEnum": {
-        "title": "cardAcquirerRoutingToEnum",
-        "type": "string",
-        "description": "Card specific parameter: The acquirer the card transaction should be routed to. This flagging can only be used if more than one acquirer is enabled for the merchant account.",
-        "enum": [
-          "concardis",
-          "nets"
-        ]
-      },
       "PaymentInstrumentType": {
         "title": "PaymentInstrumentType",
         "type": "string",
@@ -3180,9 +3132,6 @@
               }
             },
             "description": "Details about the eDCC offer used in the order"
-          },
-          "cardAcquirerRoutingTo": {
-            "$ref": "#/components/schemas/CardAcquirerRoutingToEnum"
           },
           "instant": {
             "type": "boolean",
