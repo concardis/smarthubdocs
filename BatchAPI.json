@@ -5,6 +5,16 @@
     "title": "Batch API",
     "description": "The Batch service API allows the merchants to upload files with multiple transactions data that will be processed asynchronously by the system."
   },
+  "servers": [
+    {
+      "url": "https://apitest.payengine.de/v1",
+      "description": "Test"
+    },
+    {
+      "url": "https://api.payengine.de/v1",
+      "description": "Live"
+    }
+  ],
   "paths": {
     "/batch": {
       "get": {
