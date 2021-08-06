@@ -5,27 +5,9 @@
     "title": "Tokenization API",
     "description": "The Tokenization API is used for creating token references of payment data."
   },
-  "servers": [
-    {
-      "url": "https://apitest.payengine.de/v1",
-      "description": "Test"
-    },
-    {
-      "url": "https://api.payengine.de/v1",
-      "description": "Live"
-    }
-  ],
-  "tags": [
-    {
-      "name": "Tokenization API"
-    }
-  ],
   "paths": {
     "/payment-instruments": {
       "post": {
-        "tags": [
-          "Tokenization API"
-        ],
         "summary": "Tokenize a payment instrument\n",
         "description": "Endpoint to create a new payment instrument.\nThe service will store the payment credentials and return a paymentInstrumentId which can be used as a token for referencing the credentials for any payment operation.\n\nThe storage complies with the latest PCI standards and regulations.\n\nA payment instrument can be created either explicitly (e.g. for credit card & sepa) or implicitly as part of a preauth or debit transaction.\nPayment instruments can be used for recurring payments, if the flag \"recurring\" is set to true.\n",
         "operationId": "createPaymentInstrument",
@@ -70,9 +52,6 @@
         "x-codegen-request-body-name": "body"
       },
       "get": {
-        "tags": [
-          "Tokenization API"
-        ],
         "summary": "Get a list of payment instruments",
         "description": "Endpoint to receive a list of available paymentinstruments.\n\n\nThe following parameters can be used as filter.\n- paymentInstrumentId\n- merchantPaymentInstrumentId\n- type\n- origin\n- recurring\n- createdAt\n- modifiedAt\n",
         "operationId": "PaymentInstruments",
@@ -97,9 +76,6 @@
     },
     "/payment-instruments/{paymentInstrumentId}": {
       "get": {
-        "tags": [
-          "Tokenization API"
-        ],
         "summary": "Get a payment instrument\n",
         "description": "Endpoint to receive a specific payment instrument referencing the paymentInstrumentId.\n",
         "operationId": "getPaymentInstrument",
@@ -143,9 +119,6 @@
         ]
       },
       "patch": {
-        "tags": [
-          "Tokenization API"
-        ],
         "summary": "Update a payment instrument\n",
         "description": "Endpoint to update an existing payment instrument referencing the paymentInstrumentId.\n\nCan be used to refresh the verification code (CVC) for card payment instruments, e.g. in case of a recurring transaction the shopper can be forced to re-enter the CVC.\n",
         "operationId": "updatePaymentInstrument",
@@ -195,15 +168,12 @@
         },
         "security": [
           {
-            "Bearer": []
+            "basicAuth": []
           }
         ],
         "x-codegen-request-body-name": "body"
       },
       "delete": {
-        "tags": [
-          "Tokenization API"
-        ],
         "summary": "Delete a payment instrument",
         "description": "Endpoint to delete an existing payment instrument referencing the paymentInstrumentId.\n",
         "operationId": "DeletePaymentInstrumentByPaymentInstrumentId",
@@ -243,9 +213,6 @@
     },
     "/payment-instruments/{paymentInstrumentId}/card-check": {
       "post": {
-        "tags": [
-          "Tokenization API"
-        ],
         "summary": "Initiate a card check",
         "description": "Service to initiate a card check which will results in a 0,00 EUR authorization.\n\nThe card check authorization can be used as an initial authorization containing the 3DS information in case the merchant only stores the payment credentials and at this point no real payment should be initiated.\n",
         "operationId": "createCardcheckForPaymentInstrument",
@@ -914,9 +881,6 @@
       "CardcheckRequest": {
         "type": "object",
         "properties": {
-          "cardAcquirerRoutingTo": {
-            "$ref": "#/components/schemas/CardAcquirerRoutingToEnum"
-          },
           "cofContract": {
             "$ref": "#/components/schemas/CofContractRequest"
           },
@@ -961,9 +925,6 @@
           },
           "cofContract": {
             "$ref": "#/components/schemas/CofContractResponse"
-          },
-          "cardAcquirerRoutingTo": {
-            "$ref": "#/components/schemas/CardAcquirerRoutingToEnum"
           },
           "errorDetails": {
             "$ref": "#/components/schemas/CardcheckErrorDetails"
@@ -1227,15 +1188,6 @@
             "type": "string"
           }
         }
-      },
-      "CardAcquirerRoutingToEnum": {
-        "title": "cardAcquirerRoutingToEnum",
-        "type": "string",
-        "description": "Card specific parameter: The acquirer the card transaction should be routed to. This flagging can only be used if more than one acquirer is enabled for the merchant account.",
-        "enum": [
-          "concardis",
-          "nets"
-        ]
       },
       "ArticleTypeEnum": {
         "title": "ArticleTypeEnum",
