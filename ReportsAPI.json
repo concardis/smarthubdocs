@@ -5,27 +5,9 @@
     "title": "Transaction reports API",
     "description": "Service that provides transaction report data"
   },
-  "servers": [
-    {
-      "url": "https://apitest.payengine.de/v1",
-      "description": "Test"
-    },
-    {
-      "url": "https://api.payengine.de/v1",
-      "description": "Live"
-    }
-  ],
-  "tags": [
-    {
-      "name": "Transaction reports API"
-    }
-  ],
   "paths": {
     "/report/transaction": {
       "get": {
-        "tags": [
-          "Transaction reports API"
-        ],
         "summary": "Get a list of transaction report files\n",
         "description": "Endpoint to receive a list of available transaction report files.\n\nThe following parameters can be used as filter.\n- createdAt\n- createdAtAfter\n- createdAtBefore\n- reportDateAfter\n- reportDateBefore\n- reportDate\n- reportType\n- fileFormat\n\nThe following parameter names can be used for ordering the results.\n- reportDate\n- fileFormat\n",
         "operationId": "getTransactionReports",
