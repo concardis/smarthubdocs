@@ -5,27 +5,9 @@
     "title": "Orders API",
     "description": "The Orders API is providing services for managing payment orders."
   },
-  "servers": [
-    {
-      "url": "https://apitest.payengine.de/v1",
-      "description": "Test"
-    },
-    {
-      "url": "https://api.payengine.de/v1",
-      "description": "Live"
-    }
-  ],
-  "tags": [
-    {
-      "name": "Orders API"
-    }
-  ],
   "paths": {
     "/orders": {
       "get": {
-        "tags": [
-          "Orders API"
-        ],
         "summary": "Get a list of orders",
         "description": "Endpoint to receive a list of available orders.\n\n\nThe following parameters can be used as filter.\n- terms\n- privacy\n- orderId\n- merchantOrderId\n- paymentProviderTransactionId\n- initialAmount\n- currency\n- customerId\n- ipAddress\n- status\n- channel\n- source\n- product\n- settled\n- settlementDate\n- createdAt\n- modifiedAt\n- lastOperation\n- email\n\n\nThe following parameters can be used as a range filter.\n\n\nDates:\n- terms\n- privacy\n- settlementDate\n- createdAt\n- modifiedAt\n\nNumbers:\n- initialAmount\n",
         "operationId": "Orders",
@@ -48,9 +30,6 @@
         ]
       },
       "post": {
-        "tags": [
-          "Orders API"
-        ],
         "summary": "Create an order intent",
         "description": "Endpoint to create an order intent.\n\nThis service will create a new order incl. all order details with status CREATED and returns a corresponding orderId.\n\nThe order intent is required for Payengine widget solutions which need an orderId as an input in order to execute an order at the end of the process.\n",
         "operationId": "getOrders",
@@ -87,9 +66,6 @@
     },
     "/orders/{orderId}": {
       "get": {
-        "tags": [
-          "Orders API"
-        ],
         "summary": "Get an order",
         "description": "Endpoint to receive a specific order referencing the orderId.\n\nThe returned order object includes all details and transactions of the whole lifecycle of the order.\n",
         "operationId": "getOrder",
@@ -133,9 +109,6 @@
         ]
       },
       "patch": {
-        "tags": [
-          "Orders API"
-        ],
         "summary": "Update an order",
         "description": "Endpoint to update an order intent referencing the orderId.\n\n\nThis service can be used for updating order details as long as the order is still in status CREATED.\n",
         "operationId": "OrdersByOrderId1",
@@ -183,9 +156,6 @@
     },
     "/orders/preauth": {
       "post": {
-        "tags": [
-          "Orders API"
-        ],
         "summary": "Preauthorize an order",
         "description": "An endpoint used to initiate a preauthorization of an order.\nA preauth transaction only authorizes a payment and for certain methods also reserves the authorized amount. However no cash flow will be triggered as long as no corresponding capture transaction is initiated at a later stage.\n\nThere are 2 workflows to process a preauth: ASYNC and SYNC.\n\nWith SYNC payment methods the transaction will directly result in a OK/SUCCESS or a negative status. With ASYNC payment methods the transaction will result in a PENDING or FAILURE/DECLINED/ABORTED status.\n\nThe integrating system needs to redirect the shopper to the redirectUrl After the shopper completes the payment action the transaction status will change accordingly and the integrator can query the updated status.\n",
         "operationId": "createPreauthOrder",
@@ -232,9 +202,6 @@
     },
     "/orders/debit": {
       "post": {
-        "tags": [
-          "Orders API"
-        ],
         "summary": "Debit an order",
         "description": "An endpoint used to initiate a debit of an order.\n\nThe debit transaction authorizes the payment and triggers the cash flow as the money will be debited from the end customer account.\n\nNo further capture transaction is required anymore afterwards.\n\nThere are 2 workflows to process a debit: ASYNC and SYNC.\n\nWith SYNC payment methods the transaction will directly result in a OK/SUCCESS or a negative status.\n\nWith ASYNC payment methods the transaction will result in a PENDING or FAILURE/DECLINED/ABORTED status.\n\nIf the status of the transaction is in PENDING the response will contain a redirectUrl.\n\nThe integrating system needs to redirect the shopper to the redirectUrl.\n\nAfter the shopper completes the payment action the transaction status will change accordingly and the integrator can query the updated status.\n",
         "operationId": "createDebitOrder",
@@ -2183,9 +2150,6 @@
             },
             "description": "Details about the eDCC offer used in the order"
           },
-          "cardAcquirerRoutingTo": {
-            "$ref": "#/components/schemas/CardAcquirerRoutingToEnum"
-          },
           "instant": {
             "type": "boolean",
             "description": "Indicator if the credit should be instant e.g. visa oct"
@@ -2283,9 +2247,6 @@
             "type": "string",
             "description": "The ID of the eDCC offer to be used for currency conversion. Applicable only for credit card orders",
             "example": "Edcc-cbc6ffd8-6417-49ee-92c1-121fe1e19b20"
-          },
-          "cardAcquirerRoutingTo": {
-            "$ref": "#/components/schemas/CardAcquirerRoutingToEnum"
           }
         },
         "description": "Contains specific information for different payment methods."
@@ -3414,15 +3375,6 @@
           }
         },
         "description": "Object containing error information in case of error."
-      },
-      "CardAcquirerRoutingToEnum": {
-        "title": "cardAcquirerRoutingToEnum",
-        "type": "string",
-        "description": "Card specific parameter: The acquirer the card transaction should be routed to. This flagging can only be used if more than one acquirer is enabled for the merchant account.",
-        "enum": [
-          "concardis",
-          "nets"
-        ]
       },
       "Invoicing": {
         "title": "Invoicing",
