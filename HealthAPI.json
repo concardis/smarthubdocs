@@ -54,6 +54,9 @@
               "BAD"
             ]
           }
+        },
+        "example": {
+          "systemHealth": "GOOD"
         }
       }
     },
