@@ -60,7 +60,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/OrderResponse"
+                  "$ref": "#/components/schemas/OrderCreateResponse"
                 }
               }
             }
@@ -150,7 +150,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/OrderResponse"
+                  "$ref": "#/components/schemas/OrderCreateResponse"
                 }
               }
             }
@@ -186,7 +186,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/OrderResponse"
+                  "$ref": "#/components/schemas/OrderPreauthResponse"
                 }
               }
             }
@@ -232,7 +232,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/OrderResponse"
+                  "$ref": "#/components/schemas/OrderDebitResponse"
                 }
               }
             }
@@ -271,7 +271,7 @@
             "type": "array",
             "description": "A list of orders.",
             "items": {
-              "$ref": "#/components/schemas/OrderResponse"
+              "$ref": "#/components/schemas/OrderDebitResponse"
             }
           },
           "totalPages": {
@@ -397,10 +397,43 @@
           "risk": {
             "$ref": "#/components/schemas/Risk"
           }
+        },
+        "example": {
+          "initialAmount": 119,
+          "basket": [
+            {
+              "name": "Usb lighter",
+              "articleNumber": "420",
+              "totalPrice": 100,
+              "totalPriceWithTax": 119,
+              "unitPrice": 100,
+              "unitPriceWithTax": 119,
+              "tax": 19,
+              "quantity": 1
+            }
+          ],
+          "currency": "EUR",
+          "async": {
+            "successUrl": "https://www.success.com",
+            "failureUrl": "https://www.failure.com",
+            "cancelUrl": "https://www.cancel.com"
+          },
+          "transactionType": "DEBIT",
+          "customer": "customer_lhuf76o8pe",
+          "persona": "persona_jekw3r5e4m",
+          "billingAddress": "address_1ulqutehx3",
+          "shippingAddress": "address_1ulqutehx3",
+          "ipAddress": "84.43.242.13",
+          "source": "Postman test",
+          "merchantOrderId": "1628602396",
+          "channel": "ECOM",
+          "allowedProducts": [
+            "creditcard"
+          ]
         }
       },
-      "OrderResponse": {
-        "title": "OrderResponse",
+      "OrderCreateResponse": {
+        "title": "OrderCreateResponse",
         "required": [
           "canceledAmount",
           "capturedAmount",
@@ -591,59 +624,904 @@
             "$ref": "#/components/schemas/OrderMetaInfResponse"
           },
           "lastOperation": {
-            "type": "string",
-            "description": "A combined field of the last executed transaction and the status of the transaction. \"TRANSACTION_<TRANSACTION_TYPE>_<TRANSACTION_STATUS>\"",
-            "enum": [
-              "TRANSACTION_PREAUTH_OK",
-              "TRANSACTION_PREAUTH_CREATED",
-              "TRANSACTION_PREAUTH_IN_PROGRESS",
-              "TRANSACTION_PREAUTH_PENDING",
-              "TRANSACTION_PREAUTH_FAILURE",
-              "TRANSACTION_PREAUTH_DECLINED",
-              "TRANSACTION_PREAUTH_ABORTED",
-              "TRANSACTION_PREAUTH_EXPIRED",
-              "TRANSACTION_CANCEL_OK",
-              "TRANSACTION_CANCEL_SUCCESS",
-              "TRANSACTION_CANCEL_CREATED",
-              "TRANSACTION_CANCEL_IN_PROGRESS",
-              "TRANSACTION_CANCEL_FAILURE",
-              "TRANSACTION_CANCEL_DECLINED",
-              "TRANSACTION_DEBIT_OK",
-              "TRANSACTION_DEBIT_SUCCESS",
-              "TRANSACTION_DEBIT_CREATED",
-              "TRANSACTION_DEBIT_IN_PROGRESS",
-              "TRANSACTION_DEBIT_PENDING",
-              "TRANSACTION_DEBIT_FAILURE",
-              "TRANSACTION_DEBIT_DECLINED",
-              "TRANSACTION_DEBIT_ABORTED",
-              "TRANSACTION_DEBIT_EXPIRED",
-              "TRANSACTION_CAPTURE_OK",
-              "TRANSACTION_CAPTURE_SUCCESS",
-              "TRANSACTION_CAPTURE_CREATED",
-              "TRANSACTION_CAPTURE_IN_PROGRESS",
-              "TRANSACTION_CAPTURE_FAILURE",
-              "TRANSACTION_CAPTURE_DECLINED",
-              "TRANSACTION_CAPTURE_EXPIRED",
-              "TRANSACTION_REFUND_OK",
-              "TRANSACTION_REFUND_SUCCESS",
-              "TRANSACTION_REFUND_CREATED",
-              "TRANSACTION_REFUND_IN_PROGRESS",
-              "TRANSACTION_REFUND_FAILURE",
-              "TRANSACTION_REFUND_DECLINED",
-              "TRANSACTION_CREDIT_OK",
-              "TRANSACTION_CREDIT_SUCCESS",
-              "TRANSACTION_CREDIT_CREATED",
-              "TRANSACTION_CREDIT_IN_PROGRESS",
-              "TRANSACTION_CREDIT_PENDING",
-              "TRANSACTION_CREDIT_FAILURE",
-              "TRANSACTION_CREDIT_ABORTED",
-              "TRANSACTION_CREDIT_DECLINED",
-              "TRANSACTION_CHARGEBACK_CHARGEBACK",
-              "TRANSACTION_CHARGEBACK_BOOKED",
-              "TRANSACTION_CHARGEBACK_LIFTED",
-              "TRANSACTION_CHARGEBACK_BOOKIN"
-            ]
+            "$ref": "#/components/schemas/LastOperationTypeEnum"
           }
+        },
+        "example": {
+          "createdAt": 1628602396207,
+          "modifiedAt": 1628602396207,
+          "merchantId": "Merchant-11111111-1111-1111-1111-111111111111",
+          "orderId": "oa1afzk8li",
+          "merchantOrderId": "1628602396",
+          "paymentProviderTransactionId": null,
+          "description": null,
+          "statementDescription": null,
+          "initialAmount": 119,
+          "preauthorizedAmount": 0,
+          "capturedAmount": 0,
+          "refundedAmount": 0,
+          "canceledAmount": 0,
+          "currency": "EUR",
+          "basket": [
+            {
+              "id": "Article-e018ab5d-1b60-40f2-9ae6-7497d1c615b7",
+              "name": "Usb lighter",
+              "articleNumber": "420",
+              "totalPrice": 100,
+              "totalPriceWithTax": 119,
+              "unitPrice": 100,
+              "unitPriceWithTax": 119,
+              "quantity": 1,
+              "tax": 19,
+              "discount": null,
+              "imageUrl": null,
+              "articleUrl": null,
+              "articleType": null
+            }
+          ],
+          "customer": {
+            "merchantCustomerId": "1628601092",
+            "organizationRegistrationRegister": null,
+            "organizationRegistrationId": null,
+            "organizationEntityType": null,
+            "organizationVatId": null,
+            "companyName": null,
+            "reference": null,
+            "email": "1628601092@test.com",
+            "customerId": "customer_lhuf76o8pe",
+            "addresses": [],
+            "personas": [],
+            "paymentInstruments": [],
+            "createdAt": 1628601092685,
+            "modifiedAt": 1628601092685,
+            "customerType": null
+          },
+          "persona": {
+            "personaId": "persona_jekw3r5e4m",
+            "firstName": "Max",
+            "lastName": "Last Name",
+            "phone": "00493012346",
+            "mobile": "00493012345",
+            "fax": "00493012345",
+            "birthday": 358293600000,
+            "gender": "MALE",
+            "title": "Prof. Dr.",
+            "createdAt": 1628601096583,
+            "modifiedAt": 1628601096583
+          },
+          "billingAddress": {
+            "firstName": "Max",
+            "lastName": "Maxx",
+            "street": "Musterweg",
+            "houseNumber": "32424",
+            "city": "Musterhausen",
+            "zip": "12345",
+            "country": "DE",
+            "state": "Bayern",
+            "phone": "00493012345",
+            "fax": "00493012345",
+            "mobile": "00493012345",
+            "title": "Prof. Dr.",
+            "additionalDetails": "premium buyer",
+            "addressId": "address_1ulqutehx3",
+            "createdAt": 1628601099865,
+            "modifiedAt": 1628601099865
+          },
+          "shippingAddress": {
+            "firstName": "Max",
+            "lastName": "Maxx",
+            "street": "Musterweg",
+            "houseNumber": "32424",
+            "city": "Musterhausen",
+            "zip": "12345",
+            "country": "DE",
+            "state": "Bayern",
+            "phone": "00493012345",
+            "fax": "00493012345",
+            "mobile": "00493012345",
+            "title": "Prof. Dr.",
+            "additionalDetails": "premium buyer",
+            "addressId": "address_1ulqutehx3",
+            "createdAt": 1628601099865,
+            "modifiedAt": 1628601099865
+          },
+          "ipAddress": "84.43.242.13",
+          "paymentInstrument": null,
+          "transactions": [],
+          "status": "CREATED",
+          "channel": "ECOM",
+          "source": "Postman test",
+          "settled": false,
+          "settlementDate": null,
+          "allowedProducts": [
+            "creditcard"
+          ],
+          "product": null,
+          "transactionType": "DEBIT",
+          "meta": null,
+          "async": {
+            "successUrl": "https://www.success.com",
+            "failureUrl": "https://www.failure.com",
+            "cancelUrl": "https://www.cancel.com",
+            "confirmUrl": null
+          },
+          "deviceIdent": null,
+          "clientType": "BRW",
+          "asyncNotificationSubscriptionId": null,
+          "lastOperation": "ORDER_CREATED",
+          "locale": null,
+          "risk": null
+        }
+      },
+      "OrderDebitResponse": {
+        "title": "OrderDebitResponse",
+        "required": [
+          "canceledAmount",
+          "capturedAmount",
+          "channel",
+          "createdAt",
+          "currency",
+          "initialAmount",
+          "modifiedAt",
+          "orderId",
+          "preauthorizedAmount",
+          "refundedAmount",
+          "status",
+          "transactions"
+        ],
+        "type": "object",
+        "properties": {
+          "orderId": {
+            "maxLength": 255,
+            "minLength": 1,
+            "type": "string",
+            "description": "The order id from payengine."
+          },
+          "initialAmount": {
+            "maximum": 1000000000000000000,
+            "minimum": 1,
+            "type": "number",
+            "description": "The initial amount given to create this order.",
+            "format": "int"
+          },
+          "preauthorizedAmount": {
+            "maximum": 1000000000000000000,
+            "minimum": 1,
+            "type": "number",
+            "description": "The amount which has been authorized.",
+            "format": "int"
+          },
+          "capturedAmount": {
+            "maximum": 1000000000000000000,
+            "minimum": 1,
+            "type": "number",
+            "description": "The amount which has been captured.",
+            "format": "int"
+          },
+          "refundedAmount": {
+            "maximum": 1000000000000000000,
+            "minimum": 1,
+            "type": "number",
+            "description": "The amount which has been refunded.",
+            "format": "int"
+          },
+          "canceledAmount": {
+            "maximum": 1000000000000000000,
+            "minimum": 1,
+            "type": "number",
+            "description": "The amount which has been cancelled.",
+            "format": "int"
+          },
+          "currency": {
+            "maxLength": 3,
+            "minLength": 3,
+            "type": "string",
+            "description": "Currency code according to https://en.wikipedia.org/wiki/ISO_4217"
+          },
+          "transactions": {
+            "type": "array",
+            "description": "A list of all underlying transactions.",
+            "items": {
+              "$ref": "#/components/schemas/TransactionResponseChildren"
+            }
+          },
+          "status": {
+            "$ref": "#/components/schemas/OrderStatesBaseTypeEnum"
+          },
+          "channel": {
+            "$ref": "#/components/schemas/ChannelsBaseTypeEnum"
+          },
+          "createdAt": {
+            "type": "number",
+            "description": "This timestamp indicates the creation of this order.",
+            "format": "date-time"
+          },
+          "modifiedAt": {
+            "type": "number",
+            "description": "This timestamp indicates the last modification of this order.",
+            "format": "date-time"
+          },
+          "terms": {
+            "type": "number",
+            "description": "A timestamp in milliseconds of the approval of the customer to your terms and conditions. E.g. this is required for RatePAY orders.",
+            "format": "integer"
+          },
+          "privacy": {
+            "type": "number",
+            "description": "A timestamp in milliseconds of the approval of the customer to your privacy policy. E.g. this is required for RatePAY orders.",
+            "format": "integer"
+          },
+          "merchantOrderId": {
+            "maxLength": 255,
+            "minLength": 1,
+            "type": "string",
+            "description": "The order id from your system/shop for Creditcards only 30 alphanumeric characters."
+          },
+          "paymentProviderTransactionId": {
+            "maxLength": 255,
+            "minLength": 1,
+            "type": "string",
+            "description": "The order id from the payment provider."
+          },
+          "description": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string",
+            "description": "The description from your system/shop of this order."
+          },
+          "statementDescription": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string",
+            "description": "The statement description from your system/shop of this order."
+          },
+          "basket": {
+            "type": "array",
+            "description": "The basket of your order. (optional, mandatory for ratepay-invoice, ratepay-directdebit and ratepay-installment)",
+            "items": {
+              "$ref": "#/components/schemas/Item"
+            }
+          },
+          "customer": {
+            "$ref": "#/components/schemas/CustomerResponse"
+          },
+          "persona": {
+            "$ref": "#/components/schemas/PersonaResponse"
+          },
+          "billingAddress": {
+            "$ref": "#/components/schemas/AddressResponse"
+          },
+          "shippingAddress": {
+            "$ref": "#/components/schemas/AddressResponse"
+          },
+          "ipAddress": {
+            "maxLength": 255,
+            "minLength": 1,
+            "type": "string",
+            "description": "The IP address used to submit the order. (Optional, mandatory for ratepay-invoice, ratepay-directdebit and ratepay-installment)"
+          },
+          "paymentInstrument": {
+            "$ref": "#/components/schemas/PaymentInstrumentResponse"
+          },
+          "redirectUrl": {
+            "maxLength": 2048,
+            "minLength": 6,
+            "type": "string",
+            "description": "The URL which the customer needs to be redirected to.",
+            "format": "url"
+          },
+          "source": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string",
+            "description": "The source of the order."
+          },
+          "product": {
+            "$ref": "#/components/schemas/ProductsBaseTypeEnum"
+          },
+          "allowedProducts": {
+            "type": "array",
+            "description": "A List of all valid products for this order.",
+            "items": {
+              "$ref": "#/components/schemas/ProductsBaseTypeEnum"
+            }
+          },
+          "settled": {
+            "type": "boolean",
+            "description": "A flag which indicates if this order has been settled or not."
+          },
+          "settlementDate": {
+            "type": "string",
+            "description": "The date of the settlement.",
+            "format": "date-time"
+          },
+          "transactionType": {
+            "$ref": "#/components/schemas/InitialTransactionTypeBaseTypeEnum"
+          },
+          "deviceIdent": {
+            "$ref": "#/components/schemas/DeviceIdentResponse"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/OrderMetaInfResponse"
+          },
+          "lastOperation": {
+            "$ref": "#/components/schemas/LastOperationTypeEnum"
+          }
+        },
+        "example": {
+          "createdAt": 1628698024186,
+          "modifiedAt": 1628698024222,
+          "merchantId": "Merchant-11111111-1111-1111-1111-111111111111",
+          "orderId": "rxarlg9ry2",
+          "merchantOrderId": "merchantOrderId1628698023",
+          "paymentProviderTransactionId": null,
+          "description": "cc description",
+          "statementDescription": "statement description",
+          "initialAmount": 50,
+          "preauthorizedAmount": 0,
+          "capturedAmount": 0,
+          "refundedAmount": 0,
+          "canceledAmount": 0,
+          "currency": "EUR",
+          "basket": [],
+          "customer": {
+            "merchantCustomerId": "merchantCustomerId1628610488",
+            "organizationRegistrationRegister": null,
+            "organizationRegistrationId": null,
+            "organizationEntityType": null,
+            "organizationVatId": null,
+            "companyName": null,
+            "reference": null,
+            "email": "1628610488@test.com",
+            "customerId": "customer_x1gzfzi8ba",
+            "addresses": [],
+            "personas": [],
+            "paymentInstruments": [],
+            "createdAt": 1628610488755,
+            "modifiedAt": 1628610488755,
+            "customerType": null
+          },
+          "persona": {
+            "personaId": "persona_mevz2wmco8",
+            "firstName": "Max",
+            "lastName": "Max",
+            "phone": "00493012345",
+            "mobile": "00493012345",
+            "fax": "00493012345",
+            "birthday": 358293600000,
+            "gender": "MALE",
+            "title": "Prof. Dr.",
+            "createdAt": 1628610495120,
+            "modifiedAt": 1628610495120
+          },
+          "billingAddress": {
+            "firstName": "Max",
+            "lastName": "IwJhBJrqEZ",
+            "street": "Musterweg",
+            "houseNumber": "1628610492",
+            "city": "Musterhausen",
+            "zip": "55555",
+            "country": "DE",
+            "state": "Bayern",
+            "phone": "00493012345",
+            "fax": "00493012345",
+            "mobile": "00493012345",
+            "title": "Prof. Dr.",
+            "additionalDetails": "premium buyer",
+            "addressId": "address_jql5pml0uo",
+            "createdAt": 1628610492084,
+            "modifiedAt": 1628610492084
+          },
+          "shippingAddress": {
+            "firstName": "Max",
+            "lastName": "IwJhBJrqEZ",
+            "street": "Musterweg",
+            "houseNumber": "1628610492",
+            "city": "Musterhausen",
+            "zip": "55555",
+            "country": "DE",
+            "state": "Bayern",
+            "phone": "00493012345",
+            "fax": "00493012345",
+            "mobile": "00493012345",
+            "title": "Prof. Dr.",
+            "additionalDetails": "premium buyer",
+            "addressId": "address_jql5pml0uo",
+            "createdAt": 1628610492084,
+            "modifiedAt": 1628610492084
+          },
+          "ipAddress": "82.120.21.79",
+          "paymentInstrument": {
+            "createdAt": 1628698024188,
+            "modifiedAt": 1628698024188,
+            "paymentInstrumentId": "paymentinstrument_yrbxvsebwt",
+            "merchantPaymentInstrumentId": null,
+            "attributes": {
+              "cardHolder": "Max Mustermann",
+              "cardNumber": "************7831",
+              "brand": "MASTERCARD",
+              "expiryMonth": "12",
+              "expiryYear": "21",
+              "issuerCountry": "DE",
+              "cofContracts": []
+            },
+            "encrypted": true,
+            "origin": "creditcard",
+            "type": "creditcard",
+            "recurring": false
+          },
+          "transactions": [
+            {
+              "createdAt": 1628698024186,
+              "modifiedAt": 1628698024222,
+              "type": "DEBIT",
+              "transactionId": "transaction_7msudnabfl",
+              "description": "cc description",
+              "initialAmount": 50,
+              "refundedAmount": 0,
+              "currency": "EUR",
+              "status": "PENDING",
+              "order": "rxarlg9ry2",
+              "parentTransaction": null,
+              "transactions": null,
+              "basket": [],
+              "providerCode": null,
+              "merchantMessage": null,
+              "customerMessage": null,
+              "descriptor": null,
+              "meta": null,
+              "challenge": null,
+              "asyncNotificationSubscriptionId": null,
+              "tracking": null
+            }
+          ],
+          "status": "OPEN",
+          "channel": "ECOM",
+          "source": "Postman Test 1628698023",
+          "settled": false,
+          "settlementDate": null,
+          "allowedProducts": null,
+          "product": "creditcard",
+          "transactionType": "DEBIT",
+          "meta": {
+            "threeDs": 2,
+            "flexibleThreeDS": "ThreeDSecure offered without applying any Flexible ThreeDS Risk Rules",
+            "threeDsData": {
+              "authenticationResult": {
+                "version": null,
+                "transactionId": null,
+                "status": null,
+                "redirectUrl": "https://public-api-appdev03.psp.concardis.local/async/creditcard/1.0/redirect/9a802f6f2efa39128c15",
+                "eci": null,
+                "authenticationValue": null,
+                "challengeData": null,
+                "statusReason": null,
+                "forceChallenge": false,
+                "correlationId": null,
+                "cardholderInfo": null
+              }
+            },
+            "cardAcquirerRoutingTo": "concardis",
+            "instant": false
+          },
+          "async": null,
+          "deviceIdent": null,
+          "clientType": "BRW",
+          "asyncNotificationSubscriptionId": null,
+          "lastOperation": "TRANSACTION_DEBIT_PENDING",
+          "locale": null,
+          "risk": null,
+          "redirectUrl": "https://public-api-appdev03.psp.concardis.local/async/creditcard/1.0/redirect/9a802f6f2efa39128c15"
+        }
+      },
+      "OrderPreauthResponse": {
+        "title": "OrderPreauthResponse",
+        "required": [
+          "canceledAmount",
+          "capturedAmount",
+          "channel",
+          "createdAt",
+          "currency",
+          "initialAmount",
+          "modifiedAt",
+          "orderId",
+          "preauthorizedAmount",
+          "refundedAmount",
+          "status",
+          "transactions"
+        ],
+        "type": "object",
+        "properties": {
+          "orderId": {
+            "maxLength": 255,
+            "minLength": 1,
+            "type": "string",
+            "description": "The order id from payengine."
+          },
+          "initialAmount": {
+            "maximum": 1000000000000000000,
+            "minimum": 1,
+            "type": "number",
+            "description": "The initial amount given to create this order.",
+            "format": "int"
+          },
+          "preauthorizedAmount": {
+            "maximum": 1000000000000000000,
+            "minimum": 1,
+            "type": "number",
+            "description": "The amount which has been authorized.",
+            "format": "int"
+          },
+          "capturedAmount": {
+            "maximum": 1000000000000000000,
+            "minimum": 1,
+            "type": "number",
+            "description": "The amount which has been captured.",
+            "format": "int"
+          },
+          "refundedAmount": {
+            "maximum": 1000000000000000000,
+            "minimum": 1,
+            "type": "number",
+            "description": "The amount which has been refunded.",
+            "format": "int"
+          },
+          "canceledAmount": {
+            "maximum": 1000000000000000000,
+            "minimum": 1,
+            "type": "number",
+            "description": "The amount which has been cancelled.",
+            "format": "int"
+          },
+          "currency": {
+            "maxLength": 3,
+            "minLength": 3,
+            "type": "string",
+            "description": "Currency code according to https://en.wikipedia.org/wiki/ISO_4217"
+          },
+          "transactions": {
+            "type": "array",
+            "description": "A list of all underlying transactions.",
+            "items": {
+              "$ref": "#/components/schemas/TransactionResponseChildren"
+            }
+          },
+          "status": {
+            "$ref": "#/components/schemas/OrderStatesBaseTypeEnum"
+          },
+          "channel": {
+            "$ref": "#/components/schemas/ChannelsBaseTypeEnum"
+          },
+          "createdAt": {
+            "type": "number",
+            "description": "This timestamp indicates the creation of this order.",
+            "format": "date-time"
+          },
+          "modifiedAt": {
+            "type": "number",
+            "description": "This timestamp indicates the last modification of this order.",
+            "format": "date-time"
+          },
+          "terms": {
+            "type": "number",
+            "description": "A timestamp in milliseconds of the approval of the customer to your terms and conditions. E.g. this is required for RatePAY orders.",
+            "format": "integer"
+          },
+          "privacy": {
+            "type": "number",
+            "description": "A timestamp in milliseconds of the approval of the customer to your privacy policy. E.g. this is required for RatePAY orders.",
+            "format": "integer"
+          },
+          "merchantOrderId": {
+            "maxLength": 255,
+            "minLength": 1,
+            "type": "string",
+            "description": "The order id from your system/shop for Creditcards only 30 alphanumeric characters."
+          },
+          "paymentProviderTransactionId": {
+            "maxLength": 255,
+            "minLength": 1,
+            "type": "string",
+            "description": "The order id from the payment provider."
+          },
+          "description": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string",
+            "description": "The description from your system/shop of this order."
+          },
+          "statementDescription": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string",
+            "description": "The statement description from your system/shop of this order."
+          },
+          "basket": {
+            "type": "array",
+            "description": "The basket of your order. (optional, mandatory for ratepay-invoice, ratepay-directdebit and ratepay-installment)",
+            "items": {
+              "$ref": "#/components/schemas/Item"
+            }
+          },
+          "customer": {
+            "$ref": "#/components/schemas/CustomerResponse"
+          },
+          "persona": {
+            "$ref": "#/components/schemas/PersonaResponse"
+          },
+          "billingAddress": {
+            "$ref": "#/components/schemas/AddressResponse"
+          },
+          "shippingAddress": {
+            "$ref": "#/components/schemas/AddressResponse"
+          },
+          "ipAddress": {
+            "maxLength": 255,
+            "minLength": 1,
+            "type": "string",
+            "description": "The IP address used to submit the order. (Optional, mandatory for ratepay-invoice, ratepay-directdebit and ratepay-installment)"
+          },
+          "paymentInstrument": {
+            "$ref": "#/components/schemas/PaymentInstrumentResponse"
+          },
+          "redirectUrl": {
+            "maxLength": 2048,
+            "minLength": 6,
+            "type": "string",
+            "description": "The URL which the customer needs to be redirected to.",
+            "format": "url"
+          },
+          "source": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string",
+            "description": "The source of the order."
+          },
+          "product": {
+            "$ref": "#/components/schemas/ProductsBaseTypeEnum"
+          },
+          "allowedProducts": {
+            "type": "array",
+            "description": "A List of all valid products for this order.",
+            "items": {
+              "$ref": "#/components/schemas/ProductsBaseTypeEnum"
+            }
+          },
+          "settled": {
+            "type": "boolean",
+            "description": "A flag which indicates if this order has been settled or not."
+          },
+          "settlementDate": {
+            "type": "string",
+            "description": "The date of the settlement.",
+            "format": "date-time"
+          },
+          "transactionType": {
+            "$ref": "#/components/schemas/InitialTransactionTypeBaseTypeEnum"
+          },
+          "deviceIdent": {
+            "$ref": "#/components/schemas/DeviceIdentResponse"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/OrderMetaInfResponse"
+          },
+          "lastOperation": {
+            "$ref": "#/components/schemas/LastOperationTypeEnum"
+          }
+        },
+        "example": {
+          "createdAt": 1628698145204,
+          "modifiedAt": 1628698145266,
+          "merchantId": "Merchant-11111111-1111-1111-1111-111111111111",
+          "terms": 1468590412476,
+          "privacy": 1468590412476,
+          "orderId": "xbq4kxnbf4",
+          "merchantOrderId": "merchantOrderId1628698144",
+          "paymentProviderTransactionId": null,
+          "description": "cc description",
+          "statementDescription": "statement description",
+          "initialAmount": 42745,
+          "preauthorizedAmount": 0,
+          "capturedAmount": 0,
+          "refundedAmount": 0,
+          "canceledAmount": 0,
+          "currency": "EUR",
+          "basket": [],
+          "customer": {
+            "merchantCustomerId": "merchantCustomerId1628610488",
+            "organizationRegistrationRegister": null,
+            "organizationRegistrationId": null,
+            "organizationEntityType": null,
+            "organizationVatId": null,
+            "companyName": null,
+            "reference": null,
+            "email": "1628610488@test.com",
+            "customerId": "customer_x1gzfzi8ba",
+            "addresses": [],
+            "personas": [],
+            "paymentInstruments": [],
+            "createdAt": 1628610488755,
+            "modifiedAt": 1628610488755,
+            "customerType": null
+          },
+          "persona": {
+            "personaId": "persona_mevz2wmco8",
+            "firstName": "Max",
+            "lastName": "Max",
+            "phone": "00493012345",
+            "mobile": "00493012345",
+            "fax": "00493012345",
+            "birthday": 358293600000,
+            "gender": "MALE",
+            "title": "Prof. Dr.",
+            "createdAt": 1628610495120,
+            "modifiedAt": 1628610495120
+          },
+          "billingAddress": {
+            "firstName": "Max",
+            "lastName": "IwJhBJrqEZ",
+            "street": "Musterweg",
+            "houseNumber": "1628610492",
+            "city": "Musterhausen",
+            "zip": "55555",
+            "country": "DE",
+            "state": "Bayern",
+            "phone": "00493012345",
+            "fax": "00493012345",
+            "mobile": "00493012345",
+            "title": "Prof. Dr.",
+            "additionalDetails": "premium buyer",
+            "addressId": "address_jql5pml0uo",
+            "createdAt": 1628610492084,
+            "modifiedAt": 1628610492084
+          },
+          "shippingAddress": {
+            "firstName": "Max",
+            "lastName": "IwJhBJrqEZ",
+            "street": "Musterweg",
+            "houseNumber": "1628610492",
+            "city": "Musterhausen",
+            "zip": "55555",
+            "country": "DE",
+            "state": "Bayern",
+            "phone": "00493012345",
+            "fax": "00493012345",
+            "mobile": "00493012345",
+            "title": "Prof. Dr.",
+            "additionalDetails": "premium buyer",
+            "addressId": "address_jql5pml0uo",
+            "createdAt": 1628610492084,
+            "modifiedAt": 1628610492084
+          },
+          "ipAddress": "82.120.21.79",
+          "paymentInstrument": {
+            "createdAt": 1628698145219,
+            "modifiedAt": 1628698145219,
+            "paymentInstrumentId": "paymentinstrument_8ybqii4lbx",
+            "merchantPaymentInstrumentId": null,
+            "attributes": {
+              "cardHolder": "Max Mustermann",
+              "cardNumber": "************7831",
+              "brand": "MASTERCARD",
+              "expiryMonth": "12",
+              "expiryYear": "21",
+              "issuerCountry": "DE",
+              "cofContracts": []
+            },
+            "encrypted": true,
+            "origin": "creditcard",
+            "type": "creditcard",
+            "recurring": false
+          },
+          "transactions": [
+            {
+              "createdAt": 1628698145206,
+              "modifiedAt": 1628698145266,
+              "type": "PREAUTH",
+              "transactionId": "transaction_slhkssoe6f",
+              "description": "cc description",
+              "initialAmount": 42745,
+              "capturedAmount": 0,
+              "canceledAmount": 0,
+              "currency": "EUR",
+              "status": "PENDING",
+              "order": "xbq4kxnbf4",
+              "parentTransaction": null,
+              "transactions": null,
+              "basket": [
+                {
+                  "id": "Article-19132f45-d11a-4460-8700-bf937d3320ad",
+                  "name": "Sale",
+                  "articleNumber": "SOCKS_NUMBER",
+                  "totalPrice": -100,
+                  "totalPriceWithTax": -119,
+                  "unitPrice": -100,
+                  "unitPriceWithTax": -119,
+                  "quantity": 1,
+                  "tax": 19,
+                  "discount": null,
+                  "imageUrl": null,
+                  "articleUrl": null,
+                  "articleType": "discount"
+                },
+                {
+                  "id": "Article-24c2a3ba-9f9d-477d-9ef3-ed6ab250d065",
+                  "name": "Socks",
+                  "articleNumber": "SOCKS_NUMBER",
+                  "totalPrice": 20,
+                  "totalPriceWithTax": 24,
+                  "unitPrice": 10,
+                  "unitPriceWithTax": 12,
+                  "quantity": 2,
+                  "tax": 19,
+                  "discount": null,
+                  "imageUrl": "http://google2.com",
+                  "articleUrl": "http://google.com",
+                  "articleType": "physical"
+                },
+                {
+                  "id": "Article-03da6ec2-3aa4-4d5e-97d6-3c8cf4f213f5",
+                  "name": "USB-Stick",
+                  "articleNumber": "SW10029",
+                  "totalPrice": 40000,
+                  "totalPriceWithTax": 47600,
+                  "unitPrice": 20000,
+                  "unitPriceWithTax": 23800,
+                  "quantity": 2,
+                  "tax": 19,
+                  "discount": -2380,
+                  "imageUrl": "http://google2.com",
+                  "articleUrl": "http://google.com",
+                  "articleType": "physical"
+                }
+              ],
+              "providerCode": null,
+              "merchantMessage": null,
+              "customerMessage": null,
+              "descriptor": null,
+              "meta": null,
+              "challenge": null,
+              "asyncNotificationSubscriptionId": "28117e1b-5ba9-4f03-b996-aca6e70d1206",
+              "tracking": null
+            }
+          ],
+          "status": "OPEN",
+          "channel": "ECOM",
+          "source": "Postman Test 1628698144",
+          "settled": false,
+          "settlementDate": null,
+          "allowedProducts": null,
+          "product": "creditcard",
+          "transactionType": "PREAUTH",
+          "meta": {
+            "threeDs": 2,
+            "flexibleThreeDS": "ThreeDSecure offered without applying any Flexible ThreeDS Risk Rules",
+            "threeDsData": {
+              "authenticationResult": {
+                "version": null,
+                "transactionId": null,
+                "status": null,
+                "redirectUrl": "https://public-api-appdev03.psp.concardis.local/async/creditcard/1.0/redirect/4c780675935e3798adc6",
+                "eci": null,
+                "authenticationValue": null,
+                "challengeData": null,
+                "statusReason": null,
+                "forceChallenge": false,
+                "correlationId": null,
+                "cardholderInfo": null
+              }
+            },
+            "cardAcquirerRoutingTo": "concardis",
+            "instant": false
+          },
+          "async": null,
+          "deviceIdent": null,
+          "clientType": "BRW",
+          "asyncNotificationSubscriptionId": "28117e1b-5ba9-4f03-b996-aca6e70d1206",
+          "lastOperation": "TRANSACTION_PREAUTH_PENDING",
+          "locale": null,
+          "risk": null,
+          "redirectUrl": "https://public-api-appdev03.psp.concardis.local/async/creditcard/1.0/redirect/4c780675935e3798adc6"
         }
       },
       "OrdersGetNotFound": {
@@ -798,6 +1676,9 @@
             "type": "string",
             "description": "Language tag consisting of a two-letter language code combined with a two-letter country code according to RFC 1766. Examples: en-US, en-GB. Only for PayPal, Union Pay and WeChat Pay."
           }
+        },
+        "example": {
+          "merchantOrderId": "14563247354713"
         }
       },
       "OrderOpenRequest": {
@@ -925,6 +1806,33 @@
           },
           "risk": {
             "$ref": "#/components/schemas/Risk"
+          }
+        },
+        "example": {
+          "product": "creditcard",
+          "merchantOrderId": "merchantOrderId{{$timestamp}}",
+          "description": "cc description",
+          "statementDescription": "statement description",
+          "initialAmount": 50,
+          "currency": "EUR",
+          "payment": {
+            "cardNumber": "5232569007637831",
+            "verification": "123",
+            "expiryMonth": "12",
+            "expiryYear": "21",
+            "cardHolder": "Max Mustermann"
+          },
+          "customer": "customer_x1gzfzi8ba",
+          "persona": "persona_mevz2wmco8",
+          "billingAddress": "address_jql5pml0uo",
+          "shippingAddress": "address_jql5pml0uo",
+          "ipAddress": "82.120.21.79",
+          "channel": "ECOM",
+          "source": "Postman Test 1628698023",
+          "async": {
+            "successUrl": "https://www.google.de/search?newwindow=1&q=success",
+            "failureUrl": "https://www.google.de/search?newwindow=1&q=failure",
+            "cancelUrl": "https://www.google.de/search?newwindow=1&q=cancel"
           }
         }
       },
@@ -1656,8 +2564,8 @@
             "description": "The amount which has been cancelled.",
             "format": "int"
           },
-          "challange": {
-            "$ref": "#/components/schemas/Challange"
+          "challenge": {
+            "$ref": "#/components/schemas/Challenge"
           },
           "tracking": {
             "type": "array",
@@ -3150,17 +4058,17 @@
           "EXPIRED"
         ]
       },
-      "Challange": {
-        "title": "Challange",
+      "Challenge": {
+        "title": "Challenge",
         "type": "object",
         "properties": {
           "title": {
             "type": "string",
-            "description": "The title of the prepayment TAN challange (can be displayed in the TAN form)\n"
+            "description": "The title of the prepayment TAN challenge (can be displayed in the TAN form)\n"
           },
           "label": {
             "type": "string",
-            "description": "The label of the prepayment tan challange (can be displayed in the TAN form)\n"
+            "description": "The label of the prepayment tan challenge (can be displayed in the TAN form)\n"
           },
           "format": {
             "type": "string",
@@ -3318,7 +4226,7 @@
           "redirectUrl": {
             "type": "string",
             "description": "Conditional - present in case of 3DS 1.0 and challenge flow for 3DS 2.0 redirect URL leading to hosted page by Payengine used for Cardholder authentication (main flow for 3DS 1.0 and fallback flow in case of challenge for 3DS 2.0)",
-            "example": "https://link-the-hosted-challange.example"
+            "example": "https://link-the-hosted-challenge.example"
           },
           "challengeData": {
             "$ref": "#/components/schemas/ChallengeData"
@@ -3463,6 +4371,61 @@
         "enum": [
           "UNSCHEDULED",
           "SCHEDULED"
+        ]
+      },
+      "LastOperationTypeEnum": {
+        "title": "LastOperationTypeEnum",
+        "type": "string",
+        "description": "A combined field of the last executed transaction and the status of the transaction. \"TRANSACTION_<TRANSACTION_TYPE>_<TRANSACTION_STATUS>\"",
+        "enum": [
+          "TRANSACTION_PREAUTH_OK",
+          "TRANSACTION_PREAUTH_CREATED",
+          "TRANSACTION_PREAUTH_IN_PROGRESS",
+          "TRANSACTION_PREAUTH_PENDING",
+          "TRANSACTION_PREAUTH_FAILURE",
+          "TRANSACTION_PREAUTH_DECLINED",
+          "TRANSACTION_PREAUTH_ABORTED",
+          "TRANSACTION_PREAUTH_EXPIRED",
+          "TRANSACTION_CANCEL_OK",
+          "TRANSACTION_CANCEL_SUCCESS",
+          "TRANSACTION_CANCEL_CREATED",
+          "TRANSACTION_CANCEL_IN_PROGRESS",
+          "TRANSACTION_CANCEL_FAILURE",
+          "TRANSACTION_CANCEL_DECLINED",
+          "TRANSACTION_DEBIT_OK",
+          "TRANSACTION_DEBIT_SUCCESS",
+          "TRANSACTION_DEBIT_CREATED",
+          "TRANSACTION_DEBIT_IN_PROGRESS",
+          "TRANSACTION_DEBIT_PENDING",
+          "TRANSACTION_DEBIT_FAILURE",
+          "TRANSACTION_DEBIT_DECLINED",
+          "TRANSACTION_DEBIT_ABORTED",
+          "TRANSACTION_DEBIT_EXPIRED",
+          "TRANSACTION_CAPTURE_OK",
+          "TRANSACTION_CAPTURE_SUCCESS",
+          "TRANSACTION_CAPTURE_CREATED",
+          "TRANSACTION_CAPTURE_IN_PROGRESS",
+          "TRANSACTION_CAPTURE_FAILURE",
+          "TRANSACTION_CAPTURE_DECLINED",
+          "TRANSACTION_CAPTURE_EXPIRED",
+          "TRANSACTION_REFUND_OK",
+          "TRANSACTION_REFUND_SUCCESS",
+          "TRANSACTION_REFUND_CREATED",
+          "TRANSACTION_REFUND_IN_PROGRESS",
+          "TRANSACTION_REFUND_FAILURE",
+          "TRANSACTION_REFUND_DECLINED",
+          "TRANSACTION_CREDIT_OK",
+          "TRANSACTION_CREDIT_SUCCESS",
+          "TRANSACTION_CREDIT_CREATED",
+          "TRANSACTION_CREDIT_IN_PROGRESS",
+          "TRANSACTION_CREDIT_PENDING",
+          "TRANSACTION_CREDIT_FAILURE",
+          "TRANSACTION_CREDIT_ABORTED",
+          "TRANSACTION_CREDIT_DECLINED",
+          "TRANSACTION_CHARGEBACK_CHARGEBACK",
+          "TRANSACTION_CHARGEBACK_BOOKED",
+          "TRANSACTION_CHARGEBACK_LIFTED",
+          "TRANSACTION_CHARGEBACK_BOOKIN"
         ]
       },
       "ChallengeData": {
