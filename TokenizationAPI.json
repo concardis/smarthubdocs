@@ -406,8 +406,7 @@
                 "recurringExpiry": "2024-07-10T00:00:00.000Z",
                 "recurringFrequency": 30
               }
-            ],
-            "uniqueId": "E411111JXVUXPEN1111_202112"
+            ]
           },
           "encrypted": true,
           "origin": "creditcard",
@@ -570,8 +569,8 @@
         },
         "example": {
           "verification": "111",
-          "expiryMonth": "01",
-          "expiryYear": "24",
+          "expiryMonth": "12",
+          "expiryYear": "21",
           "cardHolder": "Max Mustermann"
         }
       },
