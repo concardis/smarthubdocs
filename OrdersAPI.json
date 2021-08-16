@@ -1957,12 +1957,6 @@
             "description": "An ID of an already created paymentinstrument. Used to proceed the order. (optional)",
             "example": "paymentinstrument_123abcdef5"
           },
-          "uniqueId": {
-            "maxLength": 26,
-            "minLength": 26,
-            "type": "string",
-            "description": "An unique ID of a concrete tokenized card. Used to proceed POS orders. (optional)"
-          },
           "cardNumber": {
             "maxLength": 19,
             "minLength": 12,
