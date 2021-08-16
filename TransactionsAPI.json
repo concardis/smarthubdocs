@@ -482,7 +482,9 @@
           }
         },
         "example": {
-          "initialAmount": 100
+          "description": "transaction description",
+          "initialAmount": 100,
+          "currency": "EUR"
         }
       },
       "TransactionResponseCancel": {
