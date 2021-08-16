@@ -124,7 +124,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CaptureResponse"
+                  "$ref": "#/components/schemas/TransactionResponseCapture"
                 }
               }
             }
@@ -482,7 +482,7 @@
           }
         },
         "example": {
-          "description": "transaction description",
+          "description": "description",
           "initialAmount": 100,
           "currency": "EUR"
         }
@@ -3865,14 +3865,6 @@
             }
           }
         }
-      },
-      "CaptureResponse": {
-        "title": "CaptureResponse",
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/TransactionResponseCapture"
-          }
-        ]
       },
       "CustomerResponse": {
         "title": "CustomerResponse",
