@@ -754,6 +754,10 @@
             "type": "string",
             "description": "Additional reference within the company. i.e. 'Department XYZ'. Can be specified for organization customers. limited to 99 characters!"
           }
+        },
+        "example": {
+          "email": "example@test.com",
+          "merchantCustomerId": "1628601092"
         }
       },
       "CustomerResponse": {
@@ -802,6 +806,23 @@
               "$ref": "#/components/schemas/PaymentInstrumentResponse"
             }
           }
+        },
+        "example": {
+          "merchantCustomerId": "1628601092",
+          "organizationRegistrationRegister": null,
+          "organizationRegistrationId": null,
+          "organizationEntityType": null,
+          "organizationVatId": null,
+          "companyName": null,
+          "reference": null,
+          "email": "example@test.com",
+          "customerId": "customer_lhuf76o8pe",
+          "addresses": [],
+          "personas": [],
+          "paymentInstruments": [],
+          "createdAt": 1628601092685,
+          "modifiedAt": 1628601092685,
+          "customerType": null
         }
       },
       "CustomersGetNotFound": {
@@ -962,6 +983,9 @@
             "type": "string",
             "description": "Additional reference within the company. i.e. 'Department XYZ'. Can be specified for organization customers. limited to 99 characters!"
           }
+        },
+        "example": {
+          "merchantCustomerId": "1628601092"
         }
       },
       "CustomersGetErrors": {
@@ -1093,6 +1117,16 @@
             "type": "string",
             "description": "The title of the persona."
           }
+        },
+        "example": {
+          "firstName": "Max",
+          "lastName": "Mustermann",
+          "phone": "00493012346",
+          "mobile": "00493012345",
+          "fax": "00493012345",
+          "birthday": 358293600000,
+          "gender": "MALE",
+          "title": "Prof. Dr."
         }
       },
       "PersonaResponse": {
@@ -1164,6 +1198,19 @@
             "type": "string",
             "description": "The title of the persona."
           }
+        },
+        "example": {
+          "personaId": "persona_jekw3r5e4m",
+          "firstName": "Max",
+          "lastName": "Mustermann",
+          "phone": "00493012346",
+          "mobile": "00493012345",
+          "fax": "00493012345",
+          "birthday": 358293600000,
+          "gender": "MALE",
+          "title": "Prof. Dr.",
+          "createdAt": 1628601096583,
+          "modifiedAt": 1628601096583
         }
       },
       "CustomersPersonasGetNotFound": {
@@ -1477,6 +1524,21 @@
             "type": "string",
             "description": "Additional details for this address. This is a form free descriptor."
           }
+        },
+        "example": {
+          "firstName": "Max",
+          "lastName": "Mustermann",
+          "street": "Musterweg",
+          "houseNumber": "32424",
+          "city": "Musterhausen",
+          "zip": "12345",
+          "country": "DE",
+          "state": "Bayern",
+          "phone": "00493012345",
+          "fax": "00493012345",
+          "mobile": "00493012345",
+          "title": "Prof. Dr.",
+          "additionalDetails": "premium buyer"
         }
       },
       "AddressResponse": {
@@ -1580,6 +1642,24 @@
             "type": "string",
             "description": "Additional details for this address. This is a form free descriptor."
           }
+        },
+        "example": {
+          "firstName": "Max",
+          "lastName": "Mustermann",
+          "street": "Musterweg",
+          "houseNumber": "32424",
+          "city": "Musterhausen",
+          "zip": "12345",
+          "country": "DE",
+          "state": "Bayern",
+          "phone": "00493012345",
+          "fax": "00493012345",
+          "mobile": "00493012345",
+          "title": "Prof. Dr.",
+          "additionalDetails": "premium buyer",
+          "addressId": "address_1ulqutehx3",
+          "createdAt": 1628601099865,
+          "modifiedAt": 1628601099865
         }
       },
       "CustomersAddressesGetAllBadRequest": {
@@ -1910,7 +1990,26 @@
             "description": "Additional attributes of this paymentinstrument. E.g. masked bank- or creditcarddata.<br> For Klarna we will have possibleTypes object in the response (e.g. klarna-pay-now, klarna-pay-later, klarna-slice-it)<br> Also we will have country, and locale.<br> For PPRO payments methods we could have accountHolder (if one was used for making the transaction)"
           }
         },
-        "description": "The paymentinstrument which has been used to process this order. note: If no paymentinstrument has been submitted, one has been created with your submitted data."
+        "description": "The paymentinstrument which has been used to process this order. note: If no paymentinstrument has been submitted, one has been created with your submitted data.",
+        "example": {
+          "createdAt": 1628610473247,
+          "modifiedAt": 1628610473255,
+          "paymentInstrumentId": "paymentinstrument_xtseegjveg",
+          "merchantPaymentInstrumentId": "1628610473",
+          "attributes": {
+            "cardHolder": "Max Mustermann",
+            "cardNumber": "***********1008",
+            "brand": "AMEX",
+            "expiryMonth": "11",
+            "expiryYear": "23",
+            "issuerCountry": "DE",
+            "cofContracts": []
+          },
+          "encrypted": true,
+          "origin": "creditcard",
+          "type": "creditcard",
+          "recurring": true
+        }
       },
       "CustomersPaymentInstrumentsGetBadRequest": {
         "type": "object",
@@ -2034,7 +2133,8 @@
             "maxLength": 255,
             "minLength": 1,
             "type": "string",
-            "description": "The identifier of a paymentinstrument which will be connected to the customer."
+            "description": "The identifier of a paymentinstrument which will be connected to the customer.",
+            "example": "paymentinstrument_xtseegjveg"
           }
         }
       },
