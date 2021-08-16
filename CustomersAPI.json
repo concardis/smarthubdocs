@@ -815,7 +815,7 @@
           "organizationVatId": null,
           "companyName": null,
           "reference": null,
-          "email": "1628601092@test.com",
+          "email": "example@test.com",
           "customerId": "customer_lhuf76o8pe",
           "addresses": [],
           "personas": [],
@@ -985,7 +985,7 @@
           }
         },
         "example": {
-          "merchantCustomerId": "17361032789"
+          "merchantCustomerId": "1628601092"
         }
       },
       "CustomersGetErrors": {
@@ -1120,7 +1120,7 @@
         },
         "example": {
           "firstName": "Max",
-          "lastName": "Musterman",
+          "lastName": "Mustermann",
           "phone": "00493012346",
           "mobile": "00493012345",
           "fax": "00493012345",
@@ -1202,7 +1202,7 @@
         "example": {
           "personaId": "persona_jekw3r5e4m",
           "firstName": "Max",
-          "lastName": "Last Name",
+          "lastName": "Mustermann",
           "phone": "00493012346",
           "mobile": "00493012345",
           "fax": "00493012345",
@@ -1527,7 +1527,7 @@
         },
         "example": {
           "firstName": "Max",
-          "lastName": "Maxx",
+          "lastName": "Mustermann",
           "street": "Musterweg",
           "houseNumber": "32424",
           "city": "Musterhausen",
@@ -1645,7 +1645,7 @@
         },
         "example": {
           "firstName": "Max",
-          "lastName": "Maxx",
+          "lastName": "Mustermann",
           "street": "Musterweg",
           "houseNumber": "32424",
           "city": "Musterhausen",
@@ -1997,7 +1997,7 @@
           "paymentInstrumentId": "paymentinstrument_xtseegjveg",
           "merchantPaymentInstrumentId": "1628610473",
           "attributes": {
-            "cardHolder": "Max Musterman",
+            "cardHolder": "Max Mustermann",
             "cardNumber": "***********1008",
             "brand": "AMEX",
             "expiryMonth": "11",
@@ -2133,7 +2133,8 @@
             "maxLength": 255,
             "minLength": 1,
             "type": "string",
-            "description": "The identifier of a paymentinstrument which will be connected to the customer."
+            "description": "The identifier of a paymentinstrument which will be connected to the customer.",
+            "example": "paymentinstrument_xtseegjveg"
           }
         }
       },
