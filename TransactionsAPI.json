@@ -342,7 +342,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/TransactionRequest"
+                "$ref": "#/components/schemas/TransactionUpdateRequest"
               }
             }
           },
@@ -354,7 +354,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/TransactionResponseRefund"
+                  "$ref": "#/components/schemas/TransactionResponseUpdatedSepaRefund"
                 }
               }
             }
@@ -485,6 +485,20 @@
           "description": "transaction description",
           "initialAmount": 100,
           "currency": "EUR"
+        }
+      },
+      "TransactionUpdateRequest": {
+        "title": "TransactionUpdateRequest",
+        "type": "object",
+        "properties": {
+          "meta": {
+            "$ref": "#/components/schemas/MetaRequest"
+          }
+        },
+        "example": {
+            "meta": {
+                "tan": "32154"
+            }
         }
       },
       "TransactionResponseCancel": {
@@ -1748,6 +1762,333 @@
           "meta": {
             "$ref": "#/components/schemas/TransactionMeta"
           }
+        }
+      },
+      "TransactionResponseUpdatedSepaRefund": {
+        "title": "TransactionResponseUpdatedSepaRefund",
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/TransactionType"
+          },
+          "transactionId": {
+            "maxLength": 255,
+            "minLength": 1,
+            "type": "string",
+            "description": "The identifier of the transaction. Created by payengine"
+          },
+          "status": {
+            "$ref": "#/components/schemas/TransactionStatesBaseTypeEnum"
+          },
+          "initialAmount": {
+            "maximum": 1000000000000000000,
+            "minimum": 1,
+            "type": "number",
+            "description": "The initial amount given to create this transaction.",
+            "format": "int"
+          },
+          "currency": {
+            "maxLength": 3,
+            "minLength": 3,
+            "type": "string",
+            "description": "Currency code according to https://en.wikipedia.org/wiki/ISO_4217"
+          },
+          "description": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string",
+            "description": "The description from your system/shop of this transaction."
+          },
+          "createdAt": {
+            "type": "number",
+            "description": "This timestamp indicates the creation of this transaction.",
+            "format": "date-time"
+          },
+          "modifiedAt": {
+            "type": "number",
+            "description": "This timestamp indicates the last modification of this transaction.",
+            "format": "date-time"
+          },
+          "order": {
+            "$ref": "#/components/schemas/OrderResponse"
+          },
+          "transactions": {
+            "type": "array",
+            "description": "A list of underlying transactions.",
+            "items": {
+              "$ref": "#/components/schemas/TransactionResponseChildren"
+            }
+          },
+          "parentTransaction": {
+            "$ref": "#/components/schemas/TransactionResponseChildren"
+          },
+          "descriptor": {
+            "maxLength": 10,
+            "minLength": 1,
+            "type": "string",
+            "description": "Identifier which holds the orderId"
+          },
+          "challеnge": {
+            "$ref": "#/components/schemas/Challenge"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/TransactionMeta"
+          }
+        },
+        "example": {
+            "createdAt": 1629115061708,
+            "modifiedAt": 1629115062752,
+            "type": "REFUND",
+            "transactionId": "transaction_pllmmsys2o",
+            "description": "description",
+            "initialAmount": 100,
+            "currency": "EUR",
+            "status": "SUCCESS",
+            "order": {
+                "createdAt": 1629114808155,
+                "modifiedAt": 1629115062752,
+                "merchantId": "merchant_teewdiocca",
+                "terms": null,
+                "privacy": null,
+                "orderId": "jyhqj3squh",
+                "merchantOrderId": "merchantOrderId_1629114808",
+                "paymentProviderTransactionId": null,
+                "description": "description",
+                "statementDescription": "statement description",
+                "initialAmount": 100,
+                "preauthorizedAmount": 100,
+                "capturedAmount": 100,
+                "refundedAmount": 0,
+                "canceledAmount": 0,
+                "currency": "EUR",
+                "basket": [],
+                "customer": {
+                    "merchantCustomerId": null,
+                    "organizationRegistrationRegister": null,
+                    "organizationRegistrationId": null,
+                    "organizationEntityType": null,
+                    "organizationVatId": null,
+                    "companyName": null,
+                    "reference": null,
+                    "email": "jfdlkafjdla@test.com",
+                    "customerId": "customer_xyomga5xpc",
+                    "addresses": [],
+                    "personas": [],
+                    "paymentInstruments": [],
+                    "createdAt": 1629102599908,
+                    "modifiedAt": 1629102599908,
+                    "customerType": null
+                },
+                "persona": null,
+                "billingAddress": null,
+                "shippingAddress": null,
+                "ipAddress": "192.168.0.1",
+                "paymentInstrument": {
+                    "createdAt": 1629114808156,
+                    "modifiedAt": 1629114808156,
+                    "paymentInstrumentId": "paymentinstrument_y96gitzfrp",
+                    "merchantPaymentInstrumentId": null,
+                    "attributes": {
+                        "iban": "AT022050302101023600",
+                        "bic": "COBADEFFXXX",
+                        "accountHolder": "Max Mustermann",
+                        "bankName": null,
+                        "mandate": {
+                            "mandateReference": "mandateId1629114808",
+                            "createdDateTime": 0,
+                            "mandateText": "mandateTextString 1629114808",
+                            "directDebitType": "SINGLE",
+                            "allowedDirectDebitTypes": [],
+                            "handler": {},
+                            "hibernateLazyInitializer": {}
+                        }
+                    },
+                    "encrypted": false,
+                    "origin": "sepa",
+                    "type": "sepa",
+                    "recurring": false
+                },
+                "transactions": [
+                    {
+                        "createdAt": 1629114808155,
+                        "modifiedAt": 1629114930387,
+                        "type": "DEBIT",
+                        "transactionId": "transaction_n6szlztokh",
+                        "description": "description",
+                        "initialAmount": 100,
+                        "refundedAmount": 100,
+                        "currency": "EUR",
+                        "status": "SUCCESS",
+                        "order": "jyhqj3squh",
+                        "parentTransaction": null,
+                        "transactions": [
+                            "transaction_pllmmsys2o"
+                        ],
+                        "basket": [],
+                        "providerCode": null,
+                        "merchantMessage": null,
+                        "customerMessage": null,
+                        "descriptor": null,
+                        "meta": null,
+                        "challenge": null,
+                        "asyncNotificationSubscriptionId": null,
+                        "tracking": []
+                    }
+                ],
+                "status": "CLOSED",
+                "channel": "ECOM",
+                "source": null,
+                "settled": false,
+                "settlementDate": null,
+                "allowedProducts": [],
+                "product": "sepa",
+                "transactionType": "DEBIT",
+                "meta": {
+                    "mandate": {
+                        "mandateId": "mandateId1629114808",
+                        "createdDateTime": 0,
+                        "mandateText": "mandateTextString 1629114808",
+                        "directDebitType": "SINGLE",
+                        "allowedDirectDebitTypes": []
+                    }
+                },
+                "async": null,
+                "deviceIdent": null,
+                "clientType": "BRW",
+                "asyncNotificationSubscriptionId": null,
+                "lastOperation": "TRANSACTION_REFUND_SUCCESS",
+                "locale": null,
+                "risk": null
+            },
+            "parentTransaction": {
+                "createdAt": 1629114808155,
+                "modifiedAt": 1629114930387,
+                "type": "DEBIT",
+                "transactionId": "transaction_n6szlztokh",
+                "description": "description",
+                "initialAmount": 100,
+                "refundedAmount": 100,
+                "currency": "EUR",
+                "status": "SUCCESS",
+                "order": {
+                    "createdAt": 1629114808155,
+                    "modifiedAt": 1629115062752,
+                    "merchantId": "merchant_teewdiocca",
+                    "terms": null,
+                    "privacy": null,
+                    "orderId": "jyhqj3squh",
+                    "merchantOrderId": "merchantOrderId_1629114808",
+                    "paymentProviderTransactionId": null,
+                    "description": "description",
+                    "statementDescription": "statement description",
+                    "initialAmount": 100,
+                    "preauthorizedAmount": 100,
+                    "capturedAmount": 100,
+                    "refundedAmount": 0,
+                    "canceledAmount": 0,
+                    "currency": "EUR",
+                    "basket": [],
+                    "customer": {
+                        "merchantCustomerId": null,
+                        "organizationRegistrationRegister": null,
+                        "organizationRegistrationId": null,
+                        "organizationEntityType": null,
+                        "organizationVatId": null,
+                        "companyName": null,
+                        "reference": null,
+                        "email": "jfdlkafjdla@test.com",
+                        "customerId": "customer_xyomga5xpc",
+                        "addresses": [],
+                        "personas": [],
+                        "paymentInstruments": [],
+                        "createdAt": 1629102599908,
+                        "modifiedAt": 1629102599908,
+                        "customerType": null
+                    },
+                    "persona": null,
+                    "billingAddress": null,
+                    "shippingAddress": null,
+                    "ipAddress": "192.168.0.1",
+                    "paymentInstrument": {
+                        "createdAt": 1629114808156,
+                        "modifiedAt": 1629114808156,
+                        "paymentInstrumentId": "paymentinstrument_y96gitzfrp",
+                        "merchantPaymentInstrumentId": null,
+                        "attributes": {
+                            "iban": "AT022050302101023600",
+                            "bic": "COBADEFFXXX",
+                            "accountHolder": "Max Mustermann",
+                            "bankName": null,
+                            "mandate": {
+                                "mandateReference": "mandateId1629114808",
+                                "createdDateTime": 0,
+                                "mandateText": "mandateTextString 1629114808",
+                                "directDebitType": "SINGLE",
+                                "allowedDirectDebitTypes": [],
+                                "handler": {},
+                                "hibernateLazyInitializer": {}
+                            }
+                        },
+                        "encrypted": false,
+                        "origin": "sepa",
+                        "type": "sepa",
+                        "recurring": false
+                    },
+                    "transactions": [
+                        "transaction_n6szlztokh"
+                    ],
+                    "status": "CLOSED",
+                    "channel": "ECOM",
+                    "source": null,
+                    "settled": false,
+                    "settlementDate": null,
+                    "allowedProducts": [],
+                    "product": "sepa",
+                    "transactionType": "DEBIT",
+                    "meta": {
+                        "mandate": {
+                            "mandateId": "mandateId1629114808",
+                            "createdDateTime": 0,
+                            "mandateText": "mandateTextString 1629114808",
+                            "directDebitType": "SINGLE",
+                            "allowedDirectDebitTypes": []
+                        }
+                    },
+                    "async": null,
+                    "deviceIdent": null,
+                    "clientType": "BRW",
+                    "asyncNotificationSubscriptionId": null,
+                    "lastOperation": "TRANSACTION_REFUND_SUCCESS",
+                    "locale": null,
+                    "risk": null
+                },
+                "parentTransaction": null,
+                "transactions": [
+                    "transaction_pllmmsys2o"
+                ],
+                "basket": [],
+                "providerCode": null,
+                "merchantMessage": null,
+                "customerMessage": null,
+                "descriptor": null,
+                "meta": null,
+                "challenge": null,
+                "asyncNotificationSubscriptionId": null,
+                "tracking": []
+            },
+            "transactions": null,
+            "basket": [],
+            "providerCode": null,
+            "merchantMessage": null,
+            "customerMessage": null,
+            "descriptor": null,
+            "meta": {
+                "tanSent": true,
+                "tanSchema": "iTan"
+            },
+            "challenge": null,
+            "asyncNotificationSubscriptionId": null,
+            "tracking": []
         }
       },
       "OrderCreditRequest": {
