@@ -275,7 +275,7 @@
           },
           "globalTrackId": {
             "type": "string",
-            "example": "Could not process batch file."
+            "example": "da22c.1403614633.2558915615.1899728007"
           },
           "errors": {
             "title": "Errors",
