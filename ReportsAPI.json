@@ -80,6 +80,49 @@
           }
         ]
       }
+    },
+    "/report/transaction/download": {
+      "get": {
+        "summary": "Download a transaction report file",
+        "description": "An endpoint to download a specific transactions report files.\n\n\nThe files that should be downloaded have to be referenced via query param transactionReportId.\n\n\nIn case of multiple transactionReportId the files will be returned as a zip file.\n\n\nIn case only one transactionReportId is referenced the plain file will be returned.\n",
+        "operationId": "downloadTransactionReports",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "List of transaction report ids",
+            "style": "form",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response.",
+            "content": {}
+          },
+          "404": {
+            "description": "Not found caused by invalid input.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TxReportNotFound"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
     }
   },
   "components": {
