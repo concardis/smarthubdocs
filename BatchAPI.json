@@ -325,7 +325,7 @@
           },
           "globalTrackId": {
             "type": "string",
-            "example": "Batch file with such id does not exist"
+            "example": "da22c.313234489.1442735643.2505659661"
           },
           "errors": {
             "title": "Errors",
