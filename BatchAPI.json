@@ -28,10 +28,13 @@
                 "properties": {
                   "uploadedFile": {
                     "type": "string",
-                    "description": "A file with batch transactions",
+                    "description": "A binary string representation of a file with batch transactions",
                     "format": "binary"
                   }
-                }
+                },
+                "required": [
+                  "uploadedFile"
+                ]
               }
             }
           }
@@ -72,29 +75,14 @@
         "operationId": "getBatches",
         "responses": {
           "200": {
-            "description": "List of transactions.",
+            "description": "A list of batch files.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/BatchResponse"
+                    "$ref": "#/components/schemas/BatchResponseList"
                   }
-                },
-                "example": {
-                  "elements": [
-                    {
-                      "id": "BatchFile-0cdecdf5-e957-49b5-9324-b5734545aaec",
-                      "batchSequence": 14359,
-                      "version": 1,
-                      "createdAt": 1538587140000,
-                      "generatedAt": 1234556777,
-                      "batchRequestFileName": "merchant_kjrysmfssx_11.csv",
-                      "batchResponseFileName": "merchant_kjrysmfssx_1_result.csv",
-                      "processStatus": "COMPLETE"
-                    }
-                  ],
-                  "totalPages": 1
                 }
               }
             }
@@ -133,16 +121,6 @@
                   "items": {
                     "$ref": "#/components/schemas/BatchResponse"
                   }
-                },
-                "example": {
-                  "id": "BatchFile-0cdecdf5-e957-49b5-9324-b5734545aaec",
-                  "batchSequence": 14359,
-                  "version": 1,
-                  "createdAt": 1538587140000,
-                  "generatedAt": 1234556777,
-                  "batchRequestFileName": "merchant_kjrysmfssx_11.csv",
-                  "batchResponseFileName": "merchant_kjrysmfssx_1_result.csv",
-                  "processStatus": "COMPLETE"
                 }
               }
             }
@@ -207,6 +185,25 @@
   },
   "components": {
     "schemas": {
+      "BatchResponseList": {
+        "title": "BatchResponseList",
+        "type": "object",
+        "properties": {
+          "elements": {
+            "type": "array",
+            "description": "A list of batch files.",
+            "items": {
+              "$ref": "#/components/schemas/BatchResponse"
+            }
+          },
+          "totalPages": {
+            "minimum": 1,
+            "type": "number",
+            "description": "A counter for the total pages returned.",
+            "format": "int"
+          }
+        }
+      },
       "BatchResponse": {
         "title": "BatchResponse",
         "type": "object",
@@ -247,6 +244,16 @@
             "type": "string",
             "description": "Parsed result file with batch transactions"
           }
+        },
+        "example": {
+          "id": "BatchFile-0cdecdf5-e957-49b5-9324-b5734545aaec",
+          "batchSequence": 14359,
+          "version": 1,
+          "createdAt": 1538587140000,
+          "generatedAt": 1234556777,
+          "batchRequestFileName": "merchant_kjrysmfssx_11.csv",
+          "batchResponseFileName": "merchant_kjrysmfssx_1_result.csv",
+          "processStatus": "COMPLETE"
         }
       },
       "BatchUploadBadFile": {
@@ -367,7 +374,7 @@
           },
           "globalTrackId": {
             "type": "string",
-            "example": "The result file is not available yet"
+            "example": "da22c.313234489.1442735643.2505659661"
           },
           "errors": {
             "title": "Errors",
