@@ -28,37 +28,6 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TxReportList"
-                },
-                "example": {
-                  "elements": [
-                    {
-                      "createdAt": 1565748265493,
-                      "modifiedAt": 1565748265493,
-                      "id": "TransactionsReport-eb77c1f1-6515-4a61-ac9a-c2f5e28a4b9c",
-                      "reportType": "daily",
-                      "fileName": "trans-rep-merchant_kjrysmfssx-d-20190813.csv",
-                      "reportDate": 1565661865493,
-                      "fileFormat": "csv"
-                    },
-                    {
-                      "createdAt": 1572584536172,
-                      "modifiedAt": 1572584536172,
-                      "id": "TransactionsReport-ef55e717-ac4a-4611-829f-a1e4f08ed438",
-                      "reportType": "monthly",
-                      "fileName": "trans-rep-merchant_kjrysmfssx-m-201910.csv",
-                      "reportDate": 1572584536172,
-                      "fileFormat": "csv"
-                    },
-                    {
-                      "createdAt": 1583978704337,
-                      "modifiedAt": 1583978704337,
-                      "id": "TransactionsReport-f217bc97-0532-4b89-92bc-b7512e9cf2cf",
-                      "reportType": "daily",
-                      "fileName": "trans-rep-merchant_kjrysmfssx-d-20200311.csv",
-                      "reportDate": 1583884800000,
-                      "fileFormat": "csv"
-                    }
-                  ]
                 }
               }
             }
@@ -129,10 +98,6 @@
     "schemas": {
       "TxReportList": {
         "title": "TxReportList",
-        "required": [
-          "elements",
-          "totalPages"
-        ],
         "type": "object",
         "properties": {
           "elements": {
@@ -172,7 +137,7 @@
           },
           "globalTrackId": {
             "type": "string",
-            "example": "Some Request ID"
+            "example": "da22c.1403614633.2558915615.1899728007"
           },
           "errors": {
             "title": "Errors",
@@ -216,6 +181,15 @@
             "type": "string",
             "description": "Format of the file ['csv', 'xlsx']"
           }
+        },
+        "example": {
+          "createdAt": 1565748265493,
+          "modifiedAt": 1565748265493,
+          "id": "TransactionsReport-eb77c1f1-6515-4a61-ac9a-c2f5e28a4b9c",
+          "reportType": "daily",
+          "fileName": "trans-rep-merchant_kjrysmfssx-d-20190813.csv",
+          "reportDate": 1565661865493,
+          "fileFormat": "csv"
         }
       },
       "TxReportPatchErrors": {
