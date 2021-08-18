@@ -16,6 +16,55 @@
     }
   ],
   "paths": {
+    "/batch/upload": {
+      "post": {
+        "summary": "Upload a batch file",
+        "description": "An endpoint to upload a csv batch file using multipart/form-data encoding.\n",
+        "operationId": "uploadBatch",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "uploadedFile": {
+                    "type": "string",
+                    "description": "A file with batch transactions",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchUploadBadFile"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
     "/batch": {
       "get": {
         "summary": "Get a list of batch files",
@@ -115,6 +164,45 @@
           }
         ]
       }
+    },
+    "/batch/{batchId}/response/download": {
+      "get": {
+        "summary": "Download a batch response file",
+        "description": "An endpoint to download the response file for a specific batch file that was uploaded.\n\n\nThe batchId of the corresponding batch file that was uploaded has to be provided as an input parameter.\n",
+        "operationId": "downloadBatch",
+        "parameters": [
+          {
+            "name": "batchId",
+            "in": "path",
+            "description": "List of csv generated file when the uploaded file is successfully parsed.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response.",
+            "content": {}
+          },
+          "404": {
+            "description": "Not found caused by invalid input.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchResponseNotFound"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
     }
   },
   "components": {
@@ -161,6 +249,56 @@
           }
         }
       },
+      "BatchUploadBadFile": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string",
+            "example": "v1/batch/upload"
+          },
+          "timestamp": {
+            "type": "number",
+            "format": "date-time",
+            "example": 1603275671582
+          },
+          "status": {
+            "type": "number",
+            "example": 400
+          },
+          "code": {
+            "type": "number",
+            "example": 70000
+          },
+          "globalTrackId": {
+            "type": "string",
+            "example": "Could not process batch file."
+          },
+          "errors": {
+            "title": "Errors",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BatchUploadError"
+            }
+          }
+        }
+      },
+      "BatchUploadError": {
+        "title": "Error",
+        "type": "array",
+        "example": [
+          {
+            "code": 70009,
+            "message": "Sequence number from filename doesn't match the file header."
+          },
+          {
+            "code": 70015,
+            "message": "Batch file with this sequence number already exists."
+          }
+        ],
+        "items": {
+          "$ref": "#/components/schemas/Error"
+        }
+      },
       "BatchNotFound": {
         "type": "object",
         "properties": {
@@ -201,6 +339,52 @@
           {
             "code": 70013,
             "message": "Batch file with such id does not exist."
+          }
+        ],
+        "items": {
+          "$ref": "#/components/schemas/Error"
+        }
+      },
+      "BatchResponseNotFound": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string",
+            "example": "v1/batch/{batchId}/response/download"
+          },
+          "timestamp": {
+            "type": "number",
+            "format": "date-time",
+            "example": 1603275671582
+          },
+          "status": {
+            "type": "number",
+            "example": 404
+          },
+          "code": {
+            "type": "number",
+            "example": 70014
+          },
+          "globalTrackId": {
+            "type": "string",
+            "example": "The result file is not available yet"
+          },
+          "errors": {
+            "title": "Errors",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BatchFileResultErrors"
+            }
+          }
+        }
+      },
+      "BatchFileResultErrors": {
+        "title": "Error",
+        "type": "array",
+        "example": [
+          {
+            "code": 70014,
+            "message": "The result file is not available yet."
           }
         ],
         "items": {
