@@ -7,11 +7,11 @@
   },
   "servers": [
     {
-      "url": "https://apitest.payengine.de/v1",
+      "url": "https://api.ppr.digital-services.netsdev.eu/v1",
       "description": "Test"
     },
     {
-      "url": "https://api.payengine.de/v1",
+      "url": "https://api.digital-services.nets.eu/v1",
       "description": "Live"
     }
   ],
@@ -772,7 +772,7 @@
             "maxLength": 255,
             "minLength": 1,
             "type": "string",
-            "description": "The identifier of the customer. Created by payengine"
+            "description": "The identifier of the customer."
           },
           "email": {
             "type": "string",
@@ -1142,7 +1142,7 @@
             "maxLength": 255,
             "minLength": 1,
             "type": "string",
-            "description": "The identifier of the persona. Created by payengine"
+            "description": "The identifier of the persona."
           },
           "createdAt": {
             "type": "number",
@@ -1554,7 +1554,7 @@
             "maxLength": 255,
             "minLength": 1,
             "type": "string",
-            "description": "The identifier of the address. Created by payengine"
+            "description": "The identifier of the address."
           },
           "createdAt": {
             "type": "number",
@@ -1946,7 +1946,7 @@
             "maxLength": 255,
             "minLength": 1,
             "type": "string",
-            "description": "The identifier of the paymentinstrument. Created by payengine"
+            "description": "The identifier of the paymentinstrument."
           },
           "merchantPaymentInstrumentId": {
             "maxLength": 255,
