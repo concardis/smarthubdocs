@@ -4154,7 +4154,7 @@
         "properties": {
           "mandateId": {
             "type": "string",
-            "description": "The mandateId assigned to the SEPA mandate (optional, id will be automatically generated if not present) The id needs to follow the following pattern '^[a-zA-Z0-9\\-]{1,35}'"
+            "description": "The mandateId assigned to the SEPA mandate (optional, an id will be automatically generated if not present) The id needs to follow the following pattern '^[a-zA-Z0-9\\-]{1,35}'"
           },
           "createdDateTime": {
             "type": "number",
