@@ -4292,7 +4292,7 @@
           },
           "redirectUrl": {
             "type": "string",
-            "description": "Conditional - present in case of 3DS 1.0 and challenge flow for 3DS 2.0 redirect URL leading to hosted page used for Cardholder authentication (main flow for 3DS 1.0 and fallback flow in case of challenge for 3DS 2.0)",
+            "description": "Conditional - present in case of 3DS 1.0 and challenge flow for 3DS 2.0 redirect URL leading to a hosted page used for Cardholder authentication (main flow for 3DS 1.0 and fallback flow in case of challenge for 3DS 2.0)",
             "example": "https://link-the-hosted-challenge.example"
           },
           "challengeData": {
