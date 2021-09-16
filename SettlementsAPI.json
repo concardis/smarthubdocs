@@ -7,11 +7,11 @@
   },
   "servers": [
     {
-      "url": "https://apitest.payengine.de/v1",
+      "url": "https://api.ppr.digital-services.netsdev.eu/v1",
       "description": "Test"
     },
     {
-      "url": "https://api.payengine.de/v1",
+      "url": "https://api.digital-services.nets.eu/v1",
       "description": "Live"
     }
   ],
@@ -104,7 +104,7 @@
             "maxLength": 255,
             "minLength": 1,
             "type": "string",
-            "description": "The identifier of the settlements. Created by payengine"
+            "description": "The identifier of the settlements."
           },
           "settlementsFile": {
             "maxLength": 255,
@@ -149,7 +149,7 @@
           "settlementType": "original-format",
           "product": "creditcard",
           "receivedAt": 1625797945330,
-          "fileName": "payengine-settlement-2021-07-09-023225.csv",
+          "fileName": "settlement-2021-07-09-023225.csv",
           "downloaded": false,
           "merchantId": "merchant_kjrysmfssx"
         }
