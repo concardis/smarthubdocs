@@ -7,11 +7,11 @@
   },
   "servers": [
     {
-      "url": "https://apitest.payengine.de/v1",
+      "url": "https://api.ppr.digital-services.netsdev.eu/v1",
       "description": "Test"
     },
     {
-      "url": "https://api.payengine.de/v1",
+      "url": "https://api.digital-services.nets.eu/v1",
       "description": "Live"
     }
   ],
@@ -41,7 +41,7 @@
       },
       "post": {
         "summary": "Create an order intent",
-        "description": "Endpoint to create an order intent.\n\nThis service will create a new order incl. all order details with status CREATED and returns a corresponding orderId.\n\nThe order intent is required for Payengine widget solutions which need an orderId as an input in order to execute an order at the end of the process.\n",
+        "description": "Endpoint to create an order intent.\n\nThis service will create a new order incl. all order details with status CREATED and returns a corresponding orderId.\n\nThe order intent is required for widget solutions which need an orderId as an input in order to execute an order at the end of the process.\n",
         "operationId": "getOrders",
         "requestBody": {
           "description": "Request body to create a order intent.",
@@ -436,7 +436,7 @@
             "maxLength": 255,
             "minLength": 1,
             "type": "string",
-            "description": "The order id from payengine."
+            "description": "The order id."
           },
           "initialAmount": {
             "maximum": 1000000000000000000,
@@ -743,7 +743,7 @@
             "maxLength": 255,
             "minLength": 1,
             "type": "string",
-            "description": "The order id from payengine."
+            "description": "The order id."
           },
           "initialAmount": {
             "maximum": 1000000000000000000,
@@ -1042,7 +1042,7 @@
             "maxLength": 255,
             "minLength": 1,
             "type": "string",
-            "description": "The order id from payengine."
+            "description": "The order id."
           },
           "initialAmount": {
             "maximum": 1000000000000000000,
@@ -1347,7 +1347,7 @@
             "maxLength": 255,
             "minLength": 1,
             "type": "string",
-            "description": "The order id from payengine."
+            "description": "The order id."
           },
           "initialAmount": {
             "maximum": 1000000000000000000,
@@ -2573,7 +2573,7 @@
             "maxLength": 255,
             "minLength": 1,
             "type": "string",
-            "description": "The identifier of the transaction. Created by payengine"
+            "description": "The identifier of the transaction."
           },
           "status": {
             "$ref": "#/components/schemas/TransactionStatesBaseTypeEnum"
@@ -2686,7 +2686,7 @@
             "maxLength": 255,
             "minLength": 1,
             "type": "string",
-            "description": "The identifier of the customer. Created by payengine"
+            "description": "The identifier of the customer."
           },
           "email": {
             "type": "string",
@@ -2730,7 +2730,7 @@
             "maxLength": 255,
             "minLength": 1,
             "type": "string",
-            "description": "The identifier of the address. Created by payengine"
+            "description": "The identifier of the address."
           },
           "createdAt": {
             "type": "number",
@@ -2828,7 +2828,7 @@
             "maxLength": 255,
             "minLength": 1,
             "type": "string",
-            "description": "The identifier of the persona. Created by payengine"
+            "description": "The identifier of the persona."
           },
           "createdAt": {
             "type": "number",
@@ -2903,7 +2903,7 @@
             "maxLength": 255,
             "minLength": 1,
             "type": "string",
-            "description": "The identifier of the paymentinstrument. Created by payengine"
+            "description": "The identifier of the paymentinstrument."
           },
           "merchantPaymentInstrumentId": {
             "maxLength": 255,
@@ -3086,7 +3086,7 @@
           },
           "schemeTraceId": {
             "type": "string",
-            "description": "Scheme Trace ID or transaction reference returned by the card scheme for each authorization. This value can be used in subsequent MIT payments if the credential on file handling is not done by the Payengine but externally. See 'externalCofData.initialSchemeTraceId' description.",
+            "description": "Scheme Trace ID or transaction reference returned by the card scheme for each authorization. This value can be used in subsequent MIT payments if the credential on file handling is done externally. See 'externalCofData.initialSchemeTraceId' description.",
             "example": "123456789012345"
           },
           "threeDsData": {
@@ -4063,7 +4063,7 @@
             "maxLength": 2048,
             "minLength": 6,
             "type": "string",
-            "description": "Callback URN which will receive the contents of the notification. <br> For http listeners, use an URN like https://your-domain-listener/specific-handler.\nFor email listeners, use an URN like mailto:specific-handler@your-domain-listener.\nFor notificationVersion \"2.0\" See the content to expect in the listener: TransactionContent.\nFor notificationVersion \"2.0\" 3ds.success see the content to expect in the listener: ThreeDsContent.\nNotification Service 2.0 is described here: https://docs.payengine.de/notifications/introduction",
+            "description": "Callback URN which will receive the contents of the notification. <br> For http listeners, use an URN like https://your-domain-listener/specific-handler.\nFor email listeners, use an URN like mailto:specific-handler@your-domain-listener.\nFor notificationVersion \"2.0\" See the content to expect in the listener: TransactionContent.\nFor notificationVersion \"2.0\" 3ds.success see the content to expect in the listener: ThreeDsContent.",
             "format": "url"
           },
           "notificationEvent": {
@@ -4154,7 +4154,7 @@
         "properties": {
           "mandateId": {
             "type": "string",
-            "description": "The mandateId assigned to the SEPA mandate (optional, payengine will generate the id if not present) The id needs to follow the following pattern '^[a-zA-Z0-9\\-]{1,35}'"
+            "description": "The mandateId assigned to the SEPA mandate (optional, id will be automatically generated if not present) The id needs to follow the following pattern '^[a-zA-Z0-9\\-]{1,35}'"
           },
           "createdDateTime": {
             "type": "number",
@@ -4237,7 +4237,7 @@
             "maxLength": 15,
             "minLength": 13,
             "type": "string",
-            "description": "The initial Trace ID that was used for the MIT (merchant initiated transaction) mandate setup. This reference will be used by the card schemes to trace back the strong customer authentication that was provided with the initial CIT (cardholder initiated transaction) of the credential on file setup. The value should only be used if the handling of the CIT was done externally outside of the Payengine. Mandatory for subsequent MIT transactions.\n\nIf no schemeTraceId is available, the payengine allows this field to be null, initially. The response meta will contain a new 'schemeTraceId' provided by the credit card scheme which is to be supplied in subsequent order requests in this property.",
+            "description": "The initial Trace ID that was used for the MIT (merchant initiated transaction) mandate setup. This reference will be used by the card schemes to trace back the strong customer authentication that was provided with the initial CIT (cardholder initiated transaction) of the credential on file setup. The value should only be used if the handling of the CIT was done externally. Mandatory for subsequent MIT transactions.\n\nIf no schemeTraceId is available, this field could be null, initially. The response meta will contain a new 'schemeTraceId' provided by the credit card scheme which is to be supplied in subsequent order requests in this property.",
             "example": "123456789012345"
           }
         }
@@ -4292,7 +4292,7 @@
           },
           "redirectUrl": {
             "type": "string",
-            "description": "Conditional - present in case of 3DS 1.0 and challenge flow for 3DS 2.0 redirect URL leading to hosted page by Payengine used for Cardholder authentication (main flow for 3DS 1.0 and fallback flow in case of challenge for 3DS 2.0)",
+            "description": "Conditional - present in case of 3DS 1.0 and challenge flow for 3DS 2.0 redirect URL leading to hosted page used for Cardholder authentication (main flow for 3DS 1.0 and fallback flow in case of challenge for 3DS 2.0)",
             "example": "https://link-the-hosted-challenge.example"
           },
           "challengeData": {
@@ -4396,12 +4396,12 @@
           },
           "browserInfoId": {
             "type": "string",
-            "description": "Payengine identifier of the browser info object",
+            "description": "An identifier of the browser info object",
             "example": "browserInfo_e1f6b193df"
           },
           "threeDsVersionId": {
             "type": "string",
-            "description": "Payengine identifier of the 3DS version object",
+            "description": "An identifier of the 3DS version object",
             "example": "threedsversion_123abc456z"
           },
           "version": {
