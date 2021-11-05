@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "version": "v1",
-    "title": "Transaction reports API",
+    "title": "Reporting",
     "description": "Service that provides transaction report data"
   },
   "servers": [
