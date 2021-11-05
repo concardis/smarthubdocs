@@ -2,8 +2,8 @@
   "openapi": "3.0.1",
   "info": {
     "version": "v1",
-    "title": "Orders API",
-    "description": "The Orders API is providing services for managing payment orders."
+    "title": "Payments - Orders",
+    "description": "The Payments - Orders API is providing services for managing payment orders."
   },
   "servers": [
     {
