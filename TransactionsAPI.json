@@ -2,8 +2,8 @@
   "openapi": "3.0.1",
   "info": {
     "version": "v1",
-    "title": "Transactions API",
-    "description": "The Transactions API is providing services for managing payment transactions."
+    "title": "Payments - Transactions",
+    "description": "The Payments - Transactions API is providing services for managing payment transactions."
   },
   "servers": [
     {
