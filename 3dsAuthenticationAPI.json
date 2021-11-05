@@ -2,8 +2,8 @@
   "openapi": "3.0.1",
   "info": {
     "version": "v1",
-    "title": "3DS Authentication API",
-    "description": "The 3DS Authentication API is providing all services needed to manage 3DS 1.0/2.0 authentication."
+    "title": "3DS",
+    "description": "The 3DS API is providing all services needed to manage 3DS 1.0/2.0 authentication."
   },
   "servers": [
     {
