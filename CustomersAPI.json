@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "version": "v1",
-    "title": "Customers API",
+    "title": "Customers",
     "description": "The Customers API is providing services for managing customers and their related addresses, personas and payment instruments information."
   },
   "servers": [
