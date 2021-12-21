@@ -1,0 +1,122 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Account Updater API",
+    "version": "1.0"
+  },
+  "paths": {
+    "/v1/account-update-inquiries": {
+      "post": {
+        "tags": [
+          "AccountUpdateInquiries"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterAccountUpdatesRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterAccountUpdatesRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterAccountUpdatesRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/account-update-inquiries/{accountUpdateInquiryId}": {
+      "get": {
+        "tags": [
+          "AccountUpdateInquiries"
+        ],
+        "parameters": [
+          {
+            "name": "accountUpdateInquiryId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CreditCardAccount": {
+        "type": "object",
+        "properties": {
+          "cardNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "expiryMonth": {
+            "type": "string",
+            "nullable": true
+          },
+          "expiryYear": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PaymentToken": {
+        "type": "object",
+        "properties": {
+          "tokenId": {
+            "type": "string",
+            "nullable": true
+          },
+          "tokenType": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RegisterAccountUpdatesRequest": {
+        "type": "object",
+        "properties": {
+          "resultNotificationUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "creditCards": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CreditCardAccount"
+            },
+            "nullable": true
+          },
+          "paymentTokens": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PaymentToken"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}
